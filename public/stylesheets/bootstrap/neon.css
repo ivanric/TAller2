@@ -1,0 +1,383 @@
+@keyframes blink-one {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity:1;
+        text-shadow:0 0 5px #922596, 0 0 10px #922596, 0 0 20px #922596, 0 0 30px #922596, 0 0 40px #421144, 0 0 55px #421144
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity:.4;
+        text-shadow:none
+    }
+}
+@keyframes blink-two {
+    0%, 12%, 18.999%, 23%, 31.999%, 37%, 44.999%, 46%, 49.999%, 51%, 58.999%, 61%, 68.999%, 71%, 85.999%, 96%, 100% {
+        opacity:1;
+        text-shadow:0 0 5px #922596, 0 0 10px #922596, 0 0 20px #922596, 0 0 30px #922596, 0 0 40px #421144, 0 0 55px #421144
+    }
+    19%, 22.99%, 32%, 36.999%, 45%, 45.999%, 50%, 50.99%, 59%, 60.999%, 69%, 70.999%, 86%, 95.999% {
+        opacity:.4;
+        text-shadow:none
+    }
+}
+.neon-container {
+    font-family:'Lato', 'Open Sans', 'Arial', sans-serif;
+    color:#fff;
+    font-weight:300
+}
+.span-block span {
+    display:block
+}
+.neon-container {
+    background-image:url("../images/neon-bg.jpg");
+    background-position:top left;
+    background-repeat:y-repeat;
+    background-color:#000
+}
+.neon-container:after {
+    content:"";
+    display:block;
+    height:4px;
+    width:100%;
+    background-color:#fff;
+    box-shadow:0 0 3px 3px #0332b8
+}
+.neon-header {
+    background-image:url("../images/header-swirls.png");
+    background-size:100%;
+    background-repeat:no-repeat;
+    background-position:top left;
+    text-align:center
+}
+@media (min-width:768px) {
+    .neon-header {
+        background-size:70%
+    }
+}
+.neon-header:after {
+    content:"";
+    display:block;
+    height:4px;
+    width:100%;
+    background-color:#fff;
+    box-shadow:0 0 3px 3px #0332b8;
+    margin-top:50px
+}
+.neon-header .container {
+    padding:30px 0
+}
+@media (min-width:992px) {
+    .neon-header .container {
+        padding:60px 0;
+        min-height:350px
+    }
+}
+.neon-header .other-packages-link {
+    color:#fff;
+    text-decoration:underline;
+    font-weight:300
+}
+.neon-header-h1 {
+    margin-bottom:0;
+    margin-top:0;
+    line-height:1
+}
+.neon-header-h1 span {
+    color:#fff
+}
+.neon-title {
+    font-family:'clipregular', sans-serif;
+    text-shadow:0 0 5px #922596, 0 0 10px #922596, 0 0 20px #922596, 0 0 30px #922596, 0 0 40px #421144, 0 0 55px #421144;
+    position:relative
+}
+.neon-title:after {
+    content:"";
+    display:block;
+    background-image:url('../images/neon-header-arrow.png');
+    background-size:100%;
+    background-repeat:no-repeat;
+    position:absolute;
+    width:60px;
+    height:140px;
+    bottom:-128px;
+    right:-17px
+}
+.neon-menu {
+    font-family: 'clipregular', sans-serif;
+    text-shadow: 0 0 5px #254896, 0 0 10px #00075f, 0 0 20px #2561b9, 0 0 30px #257796, 0 0 40px #2ca5a0, 0 0 55px #1c5fa5;
+    position: relative;
+}
+.neon-menu:after {
+    content:"";
+    display:block;
+    background-image:url('../images/neon-header-arrow.png');
+    background-size:100%;
+    background-repeat:no-repeat;
+    position:absolute;
+    width:60px;
+    height:140px;
+    bottom:-128px;
+    right:-17px
+}
+@media (min-width:992px) {
+    .neon-title:after {
+        width:116px;
+        height:166px;
+        bottom:-129px;
+        right:-70px
+    }
+}
+.blink-one {
+    animation:blink-one 20s linear infinite
+}
+.blink-two {
+    animation:blink-two 25s linear infinite
+}
+.neon-year {
+    color:#fff;
+    font-size:36px;
+    margin-bottom:20px;
+    display:block
+}
+@media (min-width:992px) {
+    .neon-year {
+        font-size:48px
+    }
+}
+.neon-content {
+    background-color:rgba(0, 0, 0, 0.8)
+}
+.neon-redirect {
+    padding:20px 0 0;
+    width:100%
+}
+.neon-redirect:after {
+    content:"";
+    display:block;
+    height:4px;
+    width:100%;
+    background-color:#fff;
+    box-shadow:0 0 3px 3px #0332b8;
+    margin-top:20px
+}
+.neon-redirect p {
+    margin:0
+}
+.neon-redirect-link {
+    color:white
+}
+.neon-redirect-link:hover, .neon-redirect-link:active {
+    color:white;
+    text-decoration:underline
+}
+.neon-section {
+    padding:20px 0
+}
+.neon-section h2, .neon-section h3 {
+    font-family:'clipregular', sans-serif;
+    color:#fff
+}
+.neon-section .social-news-date {
+    font-size:10px
+}
+.neon-section a {
+    color:#fff
+}
+.noteworthy-h2 {
+    text-shadow:0 0 5px #ce08d7, 0 0 10px #ce08d7, 0 0 20px #ce08d7, 0 0 30px #ce08d7, 0 0 40px #700475, 0 0 55px #700475
+}
+.resources-h2 {
+    text-shadow:0 0 5px #1fc139, 0 0 10px #1fc139, 0 0 20px #1fc139, 0 0 30px #1fc139, 0 0 40px #11691f, 0 0 55px #11691f
+}
+.social-h2 {
+    font-size:100px;
+    position:relative;
+    margin-top:-30px;
+    line-height:.8;
+    text-shadow:0 0 5px #2175c0, 0 0 10px #2175c0, 0 0 20px #2175c0, 0 0 30px #2175c0, 0 0 40px #124069, 0 0 55px #124069
+}
+@media (min-width:992px) {
+    .social-h2 {
+        font-size:130px
+    }
+}
+.social-h2 span.small-social-h2 {
+    font-size:.5em;
+    color:#fff
+}
+.news-h3 {
+    text-shadow:0 0 5px #ce08d7, 0 0 10px #ce08d7, 0 0 20px #ce08d7, 0 0 30px #ce08d7, 0 0 40px #700475, 0 0 55px #700475;
+    font-size:32px
+}
+.social-h3 {
+    text-shadow:0 0 5px #e2d313, 0 0 10px #e2d313, 0 0 20px #e2d313, 0 0 30px #e2d313, 0 0 40px #847b0b, 0 0 55px #847b0b;
+    font-size:39px;
+    text-align:center
+}
+.social-h4 {
+    font-size:16px;
+    font-weight:700;
+    color:#fff;
+    margin-top:0
+}
+.web-series-h3 {
+    text-shadow:0 0 5px #d89810, 0 0 10px #d89810, 0 0 20px #d89810, 0 0 30px #d89810, 0 0 40px #795509, 0 0 55px #795509
+}
+.neon-circle {
+    background-color:#fff;
+    border-radius:100px;
+    display:block;
+    width:24px;
+    height:24px;
+    color:#000;
+    text-align:center;
+    padding-top:2px
+}
+.neon-circle-pink {
+    box-shadow:0 0 5px #ce08d7, 0 0 10px #ce08d7, 0 0 20px #ce08d7, 0 0 30px #ce08d7, 0 0 40px #700475, 0 0 55px #700475;
+    background:#f14df8;
+    background:-webkit-linear-gradient(left top, #f14df8, #fff);
+    background:-o-linear-gradient(bottom right, #f14df8, #fff);
+    background:-moz-linear-gradient(bottom right, #f14df8, #fff);
+    background:linear-gradient(to bottom right, #f14df8, #fff)
+}
+.neon-circle-blue {
+    box-shadow:0 0 5px #2175c0, 0 0 10px #2175c0, 0 0 20px #2175c0, 0 0 30px #2175c0, 0 0 40px #124069, 0 0 55px #124069;
+    background:#63a7e4;
+    background:-webkit-linear-gradient(left top, #63a7e4, #fff);
+    background:-o-linear-gradient(bottom right, #63a7e4, #fff);
+    background:-moz-linear-gradient(bottom right, #63a7e4, #fff);
+    background:linear-gradient(to bottom right, #63a7e4, #fff)
+}
+
+.neon-circle-green {
+    box-shadow:0 0 5px #1fc139, 0 0 10px #1fc139, 0 0 20px #1fc139, 0 0 30px #1fc139, 0 0 40px #11691f, 0 0 55px #11691f;
+    background:#60e676;
+    background:-webkit-linear-gradient(left top, #60e676, #fff);
+    background:-o-linear-gradient(bottom right, #60e676, #fff);
+    background:-moz-linear-gradient(bottom right, #60e676, #fff);
+    background:linear-gradient(to bottom right, #60e676, #fff)
+}
+.neon-circle-yellow {
+    box-shadow:0 0 5px #e2d313, 0 0 10px #e2d313, 0 0 20px #e2d313, 0 0 30px #e2d313, 0 0 40px #847b0b, 0 0 55px #847b0b;
+    background:#f2e869;
+    background:-webkit-linear-gradient(left top, #f2e869, #fff);
+    background:-o-linear-gradient(bottom right, #f2e869, #fff);
+    background:-moz-linear-gradient(bottom right, #f2e869, #fff);
+    background:linear-gradient(to bottom right, #f2e869, #fff)
+}
+.btn-neon {
+    background:transparent;
+    border:1px solid #fff;
+    border-radius:5px;
+    color:#fff;
+}
+.btn-neon:hover {
+    color:#fff
+}
+.btn-download {
+    box-shadow:0 0 15px 2px #922596, #922596 0 0 11px 3px inset;
+    background-color:#922596;
+    border-color:#ba2fbf
+}
+.btn-download:hover {
+    box-shadow:0 0 20px 3px #922596, #922596 0 0 24px 5px inset
+}
+.btn-neon-pink {
+    box-shadow:0 0 15px 2px #ce08d7, #ce08d7 0 0 11px 3px inset
+}
+.btn-neon-pink:hover {
+    box-shadow:0 0 20px 3px #ce08d7, #ce08d7 0 0 24px 5px inset
+}
+.btn-neon-danger {
+    box-shadow: 0 0 15px 2px #d70808, #d70808 0 0 11px 3px inset;
+}
+.btn-neon-danger:hover {
+    box-shadow: 0 0 20px 3px #d70808, #d70808 0 0 24px 5px inset;
+}
+.btn-neon-blue {
+    box-shadow:0 0 15px 2px #2175c0, #2175c0 0 0 11px 3px inset
+}
+.btn-neon-blue:hover {
+    box-shadow:0 0 20px 3px #2175c0, #2175c0 0 0 24px 5px inset
+}
+.btn-neon-green {
+    box-shadow:0 0 15px 2px #1fc139, #1fc139 0 0 11px 3px inset
+}
+.btn-neon-green:hover {
+    box-shadow:0 0 20px 3px #1fc139, #1fc139 0 0 24px 5px inset
+}
+.btn-neon-yellow {
+    box-shadow:0 0 15px 2px #e2d313, #e2d313 0 0 11px 3px inset
+}
+.btn-neon-yellow:hover {
+    box-shadow:0 0 20px 3px #e2d313, #e2d313 0 0 24px 5px inset
+}
+.btn-neon-brown {
+    box-shadow:0 0 15px 2px #d89810, #d89810 0 0 11px 3px inset
+}
+.btn-neon-brown:hover {
+    box-shadow:0 0 20px 3px #d89810, #d89810 0 0 24px 5px inset
+}
+.btn-white-text {
+    color:#fff
+}
+.btn-white-text:active, .btn-white-text:focus, .btn-white-text:visited, .btn-white-text:hover {
+    color:#fff
+}
+@media (max-width:768px) {
+    .btn-same-width {
+        width:200px
+    }
+}
+.neon-donate-text {
+    font-size:24px
+}
+@media (min-width:768px) {
+    .neon-donate-text {
+        margin-top:60px
+    }
+}
+.neon-donate-text strong {
+    text-shadow:0 0 5px #ce08d7, 0 0 10px #ce08d7, 0 0 20px #ce08d7, 0 0 30px #ce08d7, 0 0 40px #700475, 0 0 55px #700475
+}
+.neon-well {
+    margin-bottom:5px;
+    width:100%;
+    white-space:inherit;
+    text-align:left;
+    text-transform:none;
+    font-weight:inherit
+}
+@media (max-width:768px) {
+    .neon-news-item {
+        border-bottom:1px solid #fff;
+        margin-bottom:15px;
+        padding-bottom:10px
+    }
+}
+@media (max-width:767px) {
+    .web-series-dates {
+        color:#b3b3b3;
+        border-top:1px solid #b3b3b3;
+        margin-top:5px;
+        padding-top:5px
+    }
+}
+.neon-timeline {
+    margin-bottom:20px
+}
+.eclipse-logo {
+    padding:30px 0
+}
+.list-no-margin {
+    margin-left:0
+}
+.white {
+    color:#fff
+}
+@font-face {
+    font-family:'clipregular';
+    src:url('/neon/fonts/clip-webfont.eot');
+    src:url('/neon/fonts/clip-webfont.eot?#iefix') format('embedded-opentype'), url('/neon/fonts/clip-webfont.woff2') format('woff2'), url('/neon/fonts/clip-webfont.woff') format('woff'), url('/neon/fonts/clip-webfont.ttf') format('truetype'), url('/neon/fonts/clip-btn btn-neon btn-neon-pink btn-same-width btn-white-textwebfont.svg#clipregular') format('svg');
+    font-weight:normal;
+    font-style:normal
+}

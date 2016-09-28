@@ -1,0 +1,73 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Taller2
+    //- Bootstrap Core CSS
+    //- link(href='bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='stylesheets/bootstrap/bootstrap.min.css', rel='stylesheet')
+    link(href='stylesheets/style.css', rel='stylesheet')
+    link(href='stylesheets/iconos/elegant-icons-style.css', rel='stylesheet')
+    link(href='stylesheets/formValidation/formValidation.min.css', rel='stylesheet') 
+    
+    //- Custom Fonts
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    //- WARNING: Respond.js doesn't work if you view the page via file://
+    //-if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    div
+      img(src='images/img.jpg', width='100%;', height='150px;')
+    nav.navbar.navbar-inverse
+      .container-fluid
+        //- Brand aqui se colapsa  en tamaÃ±os celular
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#colapsador')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          //- Este es el logo
+          a.navbar-brand.page-scroll(href='index.html')
+            | electric control
+        //- aqui esta para edesconectarse del sistema y lo que hace referencia a colpasador
+        #colapsador.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            //- <li><a href="#" class="btn btn-default">Selecione</a></li>
+            li.dropdown
+              a.dropdown-toggle.pull-right(href='#', style='padding:4px 0px;width:59.9px;text-align: center;', data-toggle='dropdown', role='button', aria-expanded='false')
+                //- img.img-responsive.img-circle.pull-left(src='../img/usuario.gif')
+                i.fa.fa-user.fa-3x 
+                //- b.caret  
+              ul.dropdown-menu.user(style='background: rgba(15, 2, 98, 0.8) none repeat scroll 0% 0%; border-radius: 7px; padding-top: 3px;')
+                //-
+                  <li>
+                  <span class="triangle fa fa-caret-up fa-2x" style="color: rgba(6, 15, 84, 0.67) ! important;padding-left: 119px;"></span>
+                  </li>
+                li
+                  a(href='#', type='button', onclick='logeo.validar();')
+                    i.halflings-icon.off
+                    | Conectarse
+        //- /.navbar-collapse
+      //- /.container-fluid
+    #contenedor-modal
+    .col-md-12.col-xs-12.col-md-12()
+      div(width='100%;', height='420em;')
+        img(src='images/img.jpg', width='100%;', height='420em;')
+
+    script(src='javascripts/jquery.js')
+    //- Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap/bootstrap.min.js')
+    //- Morris Charts JavaScript
+    script(src='javascripts/plugins/morris/raphael.min.js')
+    script(src='javascripts/jqueryform/jquery.form.js')
+    script(src='javascripts/formValidation/formValidation.min.js')
+    script(src='javascripts/formValidation/framework/bootstrap.min.js')
+    script(src='javascripts/formValidation/es_ES.js')
+    script(src='javascripts/ajax/logeo.js')  

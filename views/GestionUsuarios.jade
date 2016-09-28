@@ -1,0 +1,104 @@
+.row
+  #add.col-md-12
+    a.navbar-right.btn.btn-neon.btn-neon-pink.btn-same-width.btn-white-text(style='margin:1em;', onclick='Usuarios.adicionar()')
+      | Nuevo Usuario
+      span.glyphicon.glyphicon-plus
+  .col-md-12
+    .row
+      .col-md-4
+        | Buscar: 
+        input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;')
+      | &#x9;&#x9;&#x9;
+      .col-md-3
+        select#select-tipousu.form-control.input-sm(style='width: 12em;')
+          option(value='-1', selected='selected') Tipo Personal...
+          | 
+          option(value='G') Gerente
+          | 
+          option(value='E') Empleado
+          | 
+          option(value='F') Facturador
+      | 
+      .col-md-5(style='text-align: right;')
+        label.radio-inline
+          input#activos(type='radio', name='iestado', value='1') 
+          label(for='activos')
+            span
+          | &#x9;&#x9;&#x9;&#x9;  Activos
+        | &#x9;&#x9;&#x9;&#x9;
+        label.radio-inline
+          input#bajas(type='radio', name='iestado', value='0')
+          |  
+          | &#x9;&#x9;&#x9;&#x9;  
+          label(for='bajas')
+            span
+          | &#x9;&#x9;&#x9;&#x9; Bajas
+        | &#x9;&#x9;&#x9;&#x9;
+        label.radio-inline
+          input#todos(type='radio', name='iestado', value='-1', checked='checked')
+          |  
+          | &#x9;&#x9;&#x9;&#x9;&#x9;
+          label(for='todos')
+            span
+          | &#x9;&#x9;&#x9;&#x9;&#x9;Todos
+  .col-md-12
+    table#table-usuarios.table.texto.table-condenced.display.responsive.nowrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+      thead
+        tr
+          th #
+          th Foto
+          th Apellidos y Nombres
+          th Cédula
+          th(style="text-align:center") Estado
+          th(style="text-align:center") Opciones
+          //- th B
+          //- th H
+          //- th V
+          //- th UC
+      tbody
+        each LU,i in LUsuarios
+          tr
+            td #{i}
+            td #{LU.foto}
+            td #{LU.ap} #{LU.am} #{LU.nombre}
+            td #{LU.ci}
+            td
+              a.neon-circle.neon-circle-green(href='#', accesskey='#{LU.estado}',style="text-align:center")
+                  i.glyphicon.glyphicon-arrow-up
+            td(style="text-align:center")
+              a.btn-xs.btn.btn-neon.btn-neon-brown(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+                  i.fa.fa-edit  Modificar
+              &nbsp;    
+              a.btn-xs.btn.btn-neon.btn-neon-danger(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+                  i.fa.fa-edit  Borrar   
+              &nbsp;    
+              a.btn-xs.btn.btn-neon.btn-neon-green(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+                  i.fa.fa-edit  Habilitar                         
+              &nbsp;    
+              a.btn-xs.btn.btn-neon.btn-neon-yellow.btn-white-text(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+                  i.fa.fa-edit  Ver
+              &nbsp;    
+              a.btn-xs.btn.btn-neon.btn-neon-blue(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+                  i.fa.fa-edit  Acceso                                     
+script(type='text/javascript').
+  $(document).ready(function(){
+    //- $('#select-tipousu').chosen({
+    //- no_results_text : "No se encuentra:",
+    //- width : '100%'
+    //- });  
+    /*OPCION USUARIOS*/
+    var $dt_user = $('#table-usuarios').DataTable({
+           //- $('#table-usuarios').DataTable(
+       "oLanguage": {
+       "sUrl": "../javascripts/DataTable/Spanish.lang"
+       },
+       "dom":'rt<button>ip',
+       // "ordering":false,
+       "pageLength":5,
+         
+    });
+  // OptionUser($dt_user);
+
+
+
+  })

@@ -1,68 +1,342 @@
-form#FormAddUser.form-horizontal(method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
-  #addUser.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+form#FormAddUserAdm.form-horizontal(action='/Usuarios/adicionarUsuario',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #addUserAdm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal', aria-label='Close')
             span(aria-hidden='true') &times;
-          h4#myModalLabel.modal-title Adicionar Usuario
+          h4#myModalLabel.modal-title Adicionar Usuario Administrartivo
         .modal-body
           .row
             .col-md-12
               .row
-                  .col-sm-6.col-md-6
+                  .col-xs-6.col-md-6
                     .form-group
-                      label.col-sm-12(for='inputname') Cédula
-                      .col-sm-12
+                      label.col-xs-12(for='inputname') Cédula
+                      .col-xs-12
                         input.form-control.input-sm(type='text', id='', placeholder='cedula..', name='ci', data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
-                  .col-sm-6.col-md-6
+                  .col-xs-6.col-md-6
                     .form-group                    
-                      label.col-sm-12(for='inputname') Nombre
-                      .col-sm-12
+                      label.col-xs-12(for='inputname') Nombre
+                      .col-xs-12
                         input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
               .row
                 .col-md-6  
                   .form-group
-                    label.col-sm-12(for='inputname') Ap Paterno
+                    label.col-sm-12(for='ap') Ap Paterno
                     .col-sm-12
                       input.form-control.input-sm(type='text', id='', placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
                 .col-md-6
                   .form-group  
-                    label.col-sm-12(for='inputname') Ap Materno
+                    label.col-sm-12(for='am') Ap Materno
                     .col-sm-12
-                      input.form-control.input-sm(type='text', id='', placeholder='ap Materno..', name='am', data-fv-notempty='true', data-fv-message='Ingrese apellido materno')
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+              .form-group
+                label.col-lg-3.control-label(for='') G&eacute;nero
+                |   
+                .col-lg-9
+                  //- <div class="row">
+                  //- <div class="col-md-6">
+                  label.radio-inline
+                    input#inlineRadio1(type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    | Masculino
+                  //- </div>
+                  //- <div class="col-md-6">
+                  &nbsp;
+                  label.radio-inline
+                    input#inlineRadio2(type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    |  Femenino
+                  //- </div>
+                  //- </div>
               .row
                 .col-md-6  
                   .form-group
-                    label.col-sm-12(for='inputname') Fecha Nacimiento
+                    label.col-sm-12(for='fecha') Fecha Nacimiento
                     .col-sm-12
-                      input#ingreso.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fecha', value='', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento', data-fv-notempty='true', data-fv-message='Ingrese fecha')
+                      input#ingreso.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fecha', value='', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento')
                 .col-md-6
                   .form-group  
                     label.col-sm-12(for='direccion') Direccion 
                     .col-sm-12
-                      input.form-control.input-sm(type='text', id='', placeholder='direccion..', name='direccion', data-fv-notempty='true', data-fv-message='Ingrese direccion')          
+                      input.form-control.input-sm(type='text', id='', placeholder='direccion..', name='direccion', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                      input#adm(type='hidden', name='tipo', value='a', style='display: inline;')
+              .form-group(style="display:none")
+                label.col-lg-3.control-label(for='')  Tipo
+                .col-lg-9
+                  //- <div class="row">
+                  //- <div class="col-md-6">
+                  label.radio-inline
+                    input#adm(type='radio', name='tipo', value='a', style='display: inline;')
+                      
+                    | Administrativo
+                  //- </div>
+                  //- <div class="col-md-6">
+                  //- &nbsp;
+                  //- label.radio-inline
+                  //-   input#pers(type='radio', name='tipo', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese tipo')
+                  //-   |  Personal
+                  //- </div>
+                  //- </div>
+              div
+                #op.row(style="display:none")
+                  .col-md-12
+                    .panel.panel-default
+                      .panel-heading.text-center
+                        | Datos Opcionales
+                      |           
+                      .panel-body
+                        .row
+                          .col-md-12  
+                            .form-group             
+                              .col-md-12
+                                //- div
+                                  //- input#archivo.form-control(name='archivoDig', type='file', data-fv-notempty='true',data-fv-message='Ingrese un libro' ,data-fv-file-extension='pdf',data-fv-file-type='application/pdf', data-fv-file-maxsize='209715223232', data-fv-file-message='El archivo no es valido ')
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Codig Postal
+                                      .col-xs-12
+                                        input.emply.form-control.input-sm(type='text', id='', placeholder='codigo..', name='codigo')
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Sueldo
+                                      .col-xs-12
+                                        input.emply.form-control.input-sm(type='', id='', placeholder='sueldo..', name='sueldo')
+                          .col-md-12                        
+                            .form-group             
+                              .col-md-12
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Fecha Inicio
+                                      .col-xs-12
+                                        input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha inicio', name='fini', value='')
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Fecha Fin
+                                      .col-xs-12
+                                        input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha fin', name='ffin', value='') 
+                          .col-md-12                        
+                            .form-group             
+                              .col-md-12
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Categoria
+                                      .col-xs-12
+                                        select.emply.form-control(name='categoria')
+                                          option(value="") seleccione
+                                          option(value="m") Medico
+                                          option(value="r") Recepcionista
+                                          option(value="a") Auxiliar
+                                  .col-xs-6.col-md-6                                                      
+                      
               .form-group
                 .row
-                label.col-sm-12(for='inputname') Telefono
+                label.col-sm-12(for='telefono') Telefono
                 .col-sm-12
-                  input.form-control.input-sm(type='text', id='', placeholder='telefono', name='telefono', data-fv-notempty='true', data-fv-message='Ingrese marca',data-fv-integer='true',data-fv-integer-message='Solo numero')
+                  input.form-control.input-sm(type='text', id='', placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
               .form-group
                 label.col-md-12(for='correo')
                   | Correo Electronico
                 .col-md-12(id='')
-                  input.form-control.input-sm(type='text', id='', placeholder='correo', name='correo', data-fv-notempty='true', data-fv-message='Ingrese correo')
+                  input.form-control.input-sm(type='email', id='', placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
               .form-group
-                label.col-md-12(for='correo')
+                label.col-md-12(for='foto')
                   | fotografia
                 .col-md-12(id='')
-                  input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-notempty='true', data-fv-message='Ingrese fotografia')      
+                  input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-file="true",data-fv-file-extension="jpeg,png,gif,jpg",data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg", data-fv-file-message='Error al subir imagen')      
               .form-group
-                label.col-md-12(for='correo')
+                label.col-md-12(for='descripcion')
                   | Observaciones
                 .col-md-12(for='descripcion')
                   textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
                   //- textarea.form-control(type='text',name='descripcion',data-fv-notempty='true',data-fv-message='ingrese alguna descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
               .modal-footer.text-center
-                button#btn-adtexto.btn.btn-success(type='submit') Guardar
+                button#btn-User.btn.btn-success(type='submit') Guardar
                 button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+
+form#FormAddUserPer.form-horizontal(action='/Usuarios/adicionarUsuario',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #addUserPer.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Adicionar Usuario Personal
+        .modal-body
+          .row
+            .col-md-12
+              .row
+                  .col-xs-6.col-md-6
+                    .form-group
+                      label.col-xs-12(for='inputname') Cédula
+                      .col-xs-12
+                        input.form-control.input-sm(type='text', id='', placeholder='cedula..', name='ci', data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                  .col-xs-6.col-md-6
+                    .form-group                    
+                      label.col-xs-12(for='inputname') Nombre
+                      .col-xs-12
+                        input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='ap') Ap Paterno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='am') Ap Materno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+              .form-group
+                label.col-lg-3.control-label(for='') G&eacute;nero
+                |   
+                .col-lg-9
+                  //- <div class="row">
+                  //- <div class="col-md-6">
+                  label.radio-inline
+                    input#inlineRadio1(type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    | Masculino
+                  //- </div>
+                  //- <div class="col-md-6">
+                  &nbsp;
+                  label.radio-inline
+                    input#inlineRadio2(type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    |  Femenino
+                  //- </div>
+                  //- </div>
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='fecha') Fecha Nacimiento
+                    .col-sm-12
+                      input#ingreso.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fecha', value='', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento')
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='direccion') Direccion 
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='direccion..', name='direccion', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                      input#adm(type='hidden', name='tipo', value='p', style='display: inline;')
+              .form-group(style="display:none")
+                label.col-lg-3.control-label(for='')  Tipo
+                .col-lg-9
+                    //- <div class="row">
+                    //- <div class="col-md-6">
+                    //- label.radio-inline
+                    //-   input#adm(type='radio', name='tipo', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese tipo')
+                    //-   | Administrativo
+                    //- </div>
+                    //- <div class="col-md-6">
+                    //- &nbsp;
+                  label.radio-inline
+                    input#pers(type='radio', name='tipo', value='p', style='display: inline;')
+                    |  Personal
+              //-     //- </div>
+              //-     //- </div>
+              div
+                #op.row
+                  .col-md-12
+                    .panel.panel-default
+                      .panel-heading.text-center
+                        | Datos Opcionales
+                      |           
+                      .panel-body
+                        .row
+                          .col-md-12  
+                            .form-group             
+                              .col-md-12
+                                //- div
+                                  //- input#archivo.form-control(name='archivoDig', type='file', data-fv-notempty='true',data-fv-message='Ingrese un libro' ,data-fv-file-extension='pdf',data-fv-file-type='application/pdf', data-fv-file-maxsize='209715223232', data-fv-file-message='El archivo no es valido ')
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Codig Postal
+                                      .col-xs-12
+                                        input.emply.form-control.input-sm(type='text', id='', placeholder='codigo..', name='codigo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Sueldo
+                                      .col-xs-12
+                                        input.emply.form-control.input-sm(type='', id='', placeholder='sueldo..', name='sueldo' ,data-fv-notempty='true', data-fv-message='Ingrese sueldo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                          .col-md-12                        
+                            .form-group             
+                              .col-md-12
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Fecha Inicio
+                                      .col-xs-12
+                                        input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha inicio', name='fini', value='',data-fv-notempty='true', data-fv-message='Ingrese fecha inicio', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de inicio')
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Fecha Fin
+                                      .col-xs-12
+                                        input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha fin', name='ffin', value='', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento',data-fv-notempty='true', data-fv-message='Ingrese fecha final') 
+                          .col-md-12                        
+                            .form-group             
+                              .col-md-12
+                                .row
+                                  .col-xs-6.col-md-6
+                                    .form-group
+                                      label.col-xs-12(for='inputname') Categoria
+                                      .col-xs-12
+                                        select.emply.form-control(name='categoria',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                                          option(value="") seleccione
+                                          option(value="m") Medico
+                                          option(value="r") Recepcionista
+                                          option(value="a") Auxiliar
+                                  .col-xs-6.col-md-6                                                      
+                      
+              .form-group
+                .row
+                label.col-sm-12(for='telefono') Telefono
+                .col-sm-12
+                  input.form-control.input-sm(type='text', id='', placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+              .form-group
+                label.col-md-12(for='correo')
+                  | Correo Electronico
+                .col-md-12(id='')
+                  input.form-control.input-sm(type='email', id='', placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+              .form-group
+                label.col-md-12(for='foto')
+                  | fotografia
+                .col-md-12(id='')
+                  input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-file="true",data-fv-file-extension="jpeg,png,gif,jpg",data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg", data-fv-file-message='Error al subir imagen')      
+              .form-group
+                label.col-md-12(for='descripcion')
+                  | Observaciones
+                .col-md-12(for='descripcion')
+                  textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                  //- textarea.form-control(type='text',name='descripcion',data-fv-notempty='true',data-fv-message='ingrese alguna descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Guardar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+
+
+script(type="text/javascript").
+  $("#pers").on('click',function(){
+    //- console.log(this.value);
+      //- $.ajax({
+      //-   url:'/Usuarios/MandarPersonal',
+      //-   type:'post',
+      //-   success:function(res){
+      //-     $('.JPersonal').html(res);
+      //-     $("#op").show(1000)
+      //-   },
+      //-   error:function(error){
+      //-     console.log("erro no se recibio");
+      //-   }
+      //- 
+      //- })
+      //- $("#op").show(1000)
+      //- $('#AgregarPersonal').modal('show')
+  })
+  $('#adm').click(function(){
+    
+      //- alert('jej')
+      //- $("#op").hide(500)
+      //- $("#AgregarPersonal").remove();
+      //- $('#btn-User').removeClass("disabled")
+      //- $('#btn-User').removeAttr("disabled")
+  })

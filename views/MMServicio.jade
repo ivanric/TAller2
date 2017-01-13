@@ -1,0 +1,32 @@
+form#FMServ.form-horizontal(action='/Servicios/ModificarServicio',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MMServ.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:20%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Modificar Servicio
+        .modal-body
+          .row
+            each DM,i in DMServicio
+              .col-md-12
+                .form-group
+                  label.col-sm-12(for='telefono') Nombre
+                  .col-sm-12
+                      input.form-control.input-sm(type='text',value="#{DM.nombre}",id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+                .form-group
+                  label.col-sm-12(for='telefono') Precio
+                  .col-sm-12
+                      input.form-control.input-sm(type='text',value="#{DM.precio}",id='',placeholder='Precio..', name='precio',maxlength='3',minlength='1',data-fv-stringlength-message='digitos entre 1 y 3',data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .form-group
+                  label.col-md-12(for='descripcion')
+                    | Observaciones
+                  .col-md-12(for='descripcion')
+                    textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                      | #{DM.descripcion}
+                    //- textarea.form-control(type='text',name='descripcion',data-fv-notempty='true',data-fv-message='ingrese alguna descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                .modal-footer.text-center
+                  button#btn-User.btn.btn-success(type='submit') Aceptar
+                  button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  

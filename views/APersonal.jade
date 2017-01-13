@@ -1,0 +1,69 @@
+#AgregarPersonal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel")
+  .modal-dialog.modal-sm(role="document")
+    .modal-content
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") ×         
+        h4#myModalLabel.modal-title Mensaje de Confirmacion
+      .modal-body
+        //- label Esta seguro de adicionar este Texto?
+        #op.row
+          .col-md-12
+            .panel.panel-default
+              .panel-heading.text-center
+                | Seleccione Un
+                | Documento
+              |           
+              .panel-body
+                .row
+                  .col-md-12  
+                    .form-group             
+                      .col-md-12
+                        //- div
+                          //- input#archivo.form-control(name='archivoDig', type='file', data-fv-notempty='true',data-fv-message='Ingrese un libro' ,data-fv-file-extension='pdf',data-fv-file-type='application/pdf', data-fv-file-maxsize='209715223232', data-fv-file-message='El archivo no es valido ')
+                        .row
+                          .col-xs-6.col-md-6
+                            .form-group
+                              label.col-xs-12(for='inputname') Codig Postal
+                              .col-xs-12
+                                input.emply.form-control.input-sm(type='text', id='', placeholder='codigo..', name='codigo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                          .col-xs-6.col-md-6
+                            .form-group
+                              label.col-xs-12(for='inputname') Sueldo
+                              .col-xs-12
+                                input.emply.form-control.input-sm(type='', id='', placeholder='sueldo..', name='sueldo' ,data-fv-notempty='true', data-fv-message='Ingrese sueldo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                  .col-md-12                        
+                    .form-group             
+                      .col-md-12
+                        .row
+                          .col-xs-6.col-md-6
+                            .form-group
+                              label.col-xs-12(for='inputname') Fecha Inicio
+                              .col-xs-12
+                                input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha inicio', name='fini', value='',data-fv-notempty='true', data-fv-message='Ingrese fecha inicio', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento')
+                          .col-xs-6.col-md-6
+                            .form-group
+                              label.col-xs-12(for='inputname') Fecha Fin
+                              .col-xs-12
+                                input.emply#ingreso.form-control.input-sm(type='date', placeholder='fecha fin', name='ffin', value='', data-fv-date='true', data-fv-date-format='DD/MM/YYYY', data-fv-date-message='Fecha de nacimiento') 
+                  .col-md-12                        
+                    .form-group             
+                      .col-md-12
+                        .row
+                          .col-xs-6.col-md-6
+                            .form-group
+                              label.col-xs-12(for='inputname') Categoria
+                              .col-xs-12
+                                select.emply.form-control(name='categoria',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                                  option(value="") seleccione
+                                  option(value="m") Medico
+                                  option(value="r") Recepcionista
+                                  option(value="a") Auxiliar
+                          .col-xs-6.col-md-6                                    
+      .modal-footer
+        button.btn.btn-primary(type="submit")
+          i.glyphicon.glyphicon-ok
+          |  Aceptar       
+        button.btn.btn-danger(type="button", data-dismiss="modal")
+          i.glyphicon.glyphicon-remove-sign
+          |  Cancelar

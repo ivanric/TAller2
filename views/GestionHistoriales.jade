@@ -1,0 +1,180 @@
+.row
+  #add.col-md-12.col-xs-12
+    a#addUsuario.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;', onclick='Servicios.adicionar()') Nuevo Servicio
+      &nbsp;
+      span.glyphicon.glyphicon-plus
+  .col-md-12.col-xs-12
+    .row
+      .col-md-6.col-xs-6 
+        .input-group
+          .input-group-addon
+            i.fa.fa-search(aria-hidden="true")
+          input#busqueda.input-sm.form-control(type='search',style='width: 13em;display: inline;',placeholder='nombre de servicio')
+          input#busq(type='hidden',name='busq')
+      .col-md-6.col-xs-6(style='text-align: right;')
+        label.radio-inline
+          input#activos(type='radio', name='iestado', value='1') 
+          label(for='activos')
+            span
+          |  Activos
+        label.radio-inline
+          input#bajas(type='radio', name='iestado', value='0')  
+          label(for='bajas')
+            span
+          | Bajas
+        label.radio-inline
+          input#todos(type='radio', name='iestado', value='-1', checked='checked')
+          label(for='todos')
+            span
+          | Todos
+  .col-md-12.col-xs-12
+    table#table-historiales.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+      thead
+        tr
+          th #
+          th Nombre 
+          th Ant. Personales
+          th(style="text-align:center") Consentimiento
+          th(style="text-align:center") Estado
+          th(style="text-align:center") Opciones
+      tbody
+                    
+script(type='text/javascript').
+  var f=$('#fechaN').val();
+  //- var date=formatDate(f);
+  //- $('.nuevaF').html(date)
+  //- console.log(f) 
+  function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+  }
+  
+  //- $(document).ready(function(){
+  //-     var tablita=$("#table-historiales").DataTable({
+  //-         "oLanguage":{
+  //-           "sUrl":"javascripts/DataTable/Spanish.lang"
+  //-         },
+  //-         "dom":'rt<button>ip',
+  //-         //- "ordering":false,
+  //-         "pageLength":5,
+  //-         "processing": true,
+  //-         "serverSide": true,
+  //-         "ajax":{
+  //-           "type":"post",
+  //-           "url":"/Historiales/lista",
+  //-           "data":function( d ){
+  //-             d.estado=$('input[name=iestado]:checked').val();
+  //-             //- d.busq=$('input[name=busq]').val();
+  //-             d.busq=$('#busq').val();
+  //-           }
+  //-         },
+  //-         "columns":[
+  //-           {"data":"num"},
+  //-           {"data":"num"},
+  //-           {"data":"num"},
+  //-           {"data":"num"},
+  //-           {"data":"estado"},
+  //-           {"data":"num"}
+  //-         ],// "createdRow">>dibujando de acuerdo a las columnas en este caso de 0 a 5 (arriba)
+  //-         "createdRow":function(row,data,index){
+  //-           //- console.log('index')
+  //-             $('td',row).eq(0).html(data.num);
+  //-             $('td',row).eq(1).html(data.fecha);
+  //-             $('td',row).eq(2).html(data.antper);
+  //-             if(data.consentimiento=='t'){
+  //-               $('td',row).eq(3).html('confirmado');
+  //-             }else{
+  //-               $('td',row).eq(3).html('sin confirmacion');
+  //-             }
+  //-             if(data.estado){
+  //-               $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-up"></i></a>');
+  //-             }else{
+  //-               $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-down"></i></a>');
+  //-             }
+  //-             $('td',row).eq(5).html('<a type="button" data-toggle="tooltip" data-placement="top" title="Modificar" class="btn-xs btn btn-neon btn-neon-brown" href="#" style="text-align:center"><i class="fa fa-edit"></i> Modificar</a>');
+  //-         }
+  //-         
+  //-     });
+  //-     $('#busqueda').on('keyup', function () {
+  //-       tablita.search(this.value).draw();
+  //-       console.log(this.value)
+  //-       $('#busq').val(this.value);
+  //-     }); 
+  //- })
+  //- $(document).ready(function(){
+  var filtro=$('#busqueda').val();
+  var opcion=$('input[name="iestado"]:checked').val();  
+  correr();   
+    $('#busqueda').on('keyup',function(){
+      filtro=$(this).val();
+        correr();
+    })
+    $('input[name="iestado"').on('change',function(){
+      opcion=$(this).val();
+      correr();
+    })
+    function correr(){
+      console.log('oo',filtro,' ',opcion);
+      $.ajax({
+        url:'/Historiales/listaHistoriales',
+        type:'post',
+        dataType:'json',
+        data:{
+          filtro:filtro,
+          opcion:opcion
+        },
+        success:function(resp){
+          //- var data=resp
+          console.log('siiiiiiiii ',resp);
+          $('#table-historiales').DataTable({
+          "oLanguage":{
+               "sUrl":"javascripts/DataTable/Spanish.lang"
+          },
+            'dom':'rt<button>ip',
+            //- 'serverSide':true,  
+            //- 'processing': true,
+            data:resp,
+            columns:[
+              {data:'num'},
+              {data:'num'},
+              {data:'num'},
+              {data:'num'},
+              {data:'estado'},
+              {data:'num'}
+            ]            
+            ,// "createdRow">>dibujando de acuerdo a las columnas en este caso de 0 a 5 (arriba)
+            "createdRow":function(row,data,index){
+              //- console.log('index')
+              $('td',row).eq(0).html(data.num);
+              $('td',row).eq(1).html(data.fecha);
+              $('td',row).eq(2).html(data.antper);
+              if(data.consentimiento=='t'){
+                $('td',row).eq(3).html('confirmado');
+              }else{
+                $('td',row).eq(3).html('sin confirmacion');
+              }
+              if(data.estado){
+                $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-up"></i></a>');
+              }else{
+                $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-down"></i></a>');
+              }
+              $('td',row).eq(5).html('<a type="button" data-toggle="tooltip" data-placement="top" title="Modificar" class="btn-xs btn btn-neon btn-neon-brown" href="#" style="text-align:center"><i class="fa fa-edit"></i> Modificar</a>');
+            }
+          })
+        },
+        error:function(err){
+          alert('sin respuesta del servidor')
+        }  
+      })
+    }
+    //- alert('oo',filtro,' ',opcion)
+  //- })
+  
+  

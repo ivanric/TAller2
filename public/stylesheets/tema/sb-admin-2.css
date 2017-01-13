@@ -8,15 +8,21 @@
 }
 #page-wrapper {
   padding: 0px;
-  min-height: 568px;
+  min-height: auto;
   background-color: black;
+  background: rgba(0, 0, 0, 0.38);
 }
 @media (min-width: 768px) {
   #page-wrapper {
-    background: black;
+    background: rgba(0, 0, 0, 0.38);
     position: inherit;
-    min-height: auto;
+    height: auto;
     margin: 0 0 0 250px;
+    /*color: azure;*/
+  }
+}
+@media (min-width: 10px) {
+  body {
     color: azure;
   }
 }
@@ -71,9 +77,6 @@
 }
 .sidebar .sidebar-search {
   padding: 15px;
-}
-.sidebar ul li a.active {
-  background-color: #eeeeee;
 }
 .sidebar .arrow {
   float: right;

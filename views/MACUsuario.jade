@@ -1,0 +1,31 @@
+form#accessoUsuario.form-horizontal(action='/Usuarios/Accesso',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #accesso.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog.modal-sm.modalAccesso
+      .modal-content
+        .modal-header
+          each US,i in USER
+            //- code...
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title Crear Cuenta
+            h5 #{US.ap} #{US.am} #{US.nombre}
+            div(style='text-align: center;') 
+              img(src="images/#{US.foto}", alt="alt",width='200px', style='box-shadow: 0px 1px 15px rgba(252, 252, 252, 0.6) ! important;')
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.col-md-3.control-label(for='') Login
+                .col-md-9
+                  input#xname.form-control.btn-sm(type='text', placeholder='Usuario..', name='xlogin', rel='popover',data-fv-notempty='true', data-fv-message='Ingrese login',maxlength='15',data-fv-stringlength-message="La cantidad de digitos debe ser menor a 15")
+              .form-group
+                label.col-md-3.control-label(for='') Password
+                .col-md-9
+                  input#password.form-control.btn-sm(type='password', placeholder='password', name='xpassword',data-fv-notempty='true', data-fv-message='Ingrese contraseña')
+              .form-group
+                label.col-md-3.control-label(for='') Repetir Password
+                .col-md-9
+                  input#repassword.form-control.btn-sm(type='password', placeholder='repetir password', name='xrepassword', rel='popover',data-fv-notempty='true', data-fv-message='Repita contraseña',data-fv-identical='true',data-fv-identical-field="xpassword",data-fv-identical-message='Contraseña debe ser igual')
+              .modal-footer.text-center
+                button#btn-accesso.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar            

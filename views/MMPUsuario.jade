@@ -1,0 +1,222 @@
+form#FMUP.form-horizontal(action='/Usuarios//ModificaraUsuarioPersonal',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MMUP.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Modificar Usuario Personal
+        .modal-body
+          .row
+            each DU,i in DUADMIN
+              .col-md-12
+                .row
+                    .col-xs-6.col-md-6
+                      .form-group
+                        label.col-xs-12(for='inputname') Cédula
+                        .col-xs-12
+                          input.form-control.input-sm(type='text', id='', value="#{DU.ci}",maxlength='8',minlength='8',data-fv-stringlength-message='Ingrese 8 digitos',placeholder='cedula..', name='ci', data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                    .col-xs-6.col-md-6
+                      .form-group                    
+                        label.col-xs-12(for='inputname') Nombre
+                        .col-xs-12
+                          input.form-control.input-sm(type='text', id='',value="#{DU.nombre}",placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+                .row
+                  .col-md-6  
+                    .form-group
+                      label.col-sm-12(for='ap') Ap Paterno
+                      .col-sm-12
+                        input.form-control.input-sm(type='text', id='',value="#{DU.ap}",placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
+                  .col-md-6
+                    .form-group  
+                      label.col-sm-12(for='am') Ap Materno
+                      .col-sm-12
+                        input.form-control.input-sm(type='text', id='',value="#{DU.am}",placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+                .form-group
+                  label.col-lg-3.control-label(for='') G&eacute;nero
+                  |   
+                  .col-lg-9
+                    if DU.genero==='m'
+                      //- code
+                      label.radio-inline
+                        input#inlineRadio1(checked='checked',type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        | Masculino
+                      &nbsp;
+                      label.radio-inline
+                        input#inlineRadio2(type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        |  Femenino
+                    else
+                      label.radio-inline
+                        input#inlineRadio1(type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        | Masculino
+                      &nbsp;
+                      label.radio-inline
+                        input#inlineRadio2(checked='checked',type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        |  Femenino
+                .row
+                  .col-md-6  
+                    .form-group
+                      label.col-sm-12(for='fecha') Fecha Nacimiento
+                      .col-sm-12
+                        input#fecha_nac.form-control.input-sm(value='#{fechaNac}',type='date',min='1990-01-01',max='2013-12-31',placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento',maxlength='10',minlength='10',data-fv-stringlength-message='corriga el formato')
+                  .col-md-6
+                    .form-group  
+                      label.col-sm-12(for='direccion') Direccion 
+                      .col-sm-12
+                        if DU.direccion===null
+                          input.form-control.input-sm(name='direccion',type='text', id='', placeholder='direccion..', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                        else
+                          input.form-control.input-sm(name='direccion',type='text', id='',value="#{DU.direccion}", placeholder='direccion..', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                        //- input#adm(type='hidden', name='tipo', value='p', style='display: inline;')
+                .form-group(style="display:none")
+                  label.col-lg-3.control-label(for='')  Tipo
+                  .col-lg-9
+                    label.radio-inline
+                      input#pers(type='radio', name='tipo', value='p', style='display: inline;')
+                      |  Personal
+                div
+                  #op.row
+                    .col-md-12
+                      .panel.panel-default
+                        .panel-heading.text-center
+                          | Datos Opcionales
+                        |           
+                        .panel-body
+                          .row
+                            each DP ,i in DUPERSO
+                              .col-md-12  
+                                .form-group             
+                                  .col-md-12
+                                    //- div
+                                      //- input#archivo.form-control(name='archivoDig', type='file', data-fv-notempty='true',data-fv-message='Ingrese un libro' ,data-fv-file-extension='pdf',data-fv-file-type='application/pdf', data-fv-file-maxsize='209715223232', data-fv-file-message='El archivo no es valido ')
+                                    .row
+                                      .col-xs-6.col-md-6
+                                        .form-group
+                                          label.col-xs-12(for='inputname') Codig Postal
+                                          .col-xs-12
+                                            if DP.codpost===0
+                                              //- code
+                                              input.emply.form-control.input-sm(value="",type='text', id='', placeholder='codigo..', name='codpost', data-fv-integer='true', data-fv-integer-message='solo numero')
+                                            else
+                                              input.emply.form-control.input-sm(value="#{DP.codpost}",type='text', id='', placeholder='codigo..', name='codpost', data-fv-integer='true', data-fv-integer-message='solo numero')
+                                              //- code
+                                      .col-xs-6.col-md-6
+                                        .form-group
+                                          label.col-xs-12(for='inputname') Sueldo
+                                          .col-xs-12
+                                            input.emply.form-control.input-sm(value="#{DP.sueldo}",type='', id='', placeholder='sueldo..', name='sueldo' ,data-fv-notempty='true', data-fv-message='Ingrese sueldo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                              .col-md-12                        
+                                .form-group             
+                                  .col-md-12
+                                    .row
+                                      .col-xs-6.col-md-6
+                                        .form-group
+                                          label.col-xs-12(for='inputname') Fecha Inicio
+                                          .col-xs-12
+                                            input.emply.form-control.input-sm(disabled='disabled',type='date',value="#{fechaIni}",min='#{fechaAct}',placeholder='fecha inicio', name='xd',data-fv-notempty='true', data-fv-message='Ingrese fecha inicio')
+                                            input.emply#ffini.form-control.input-sm(type='hidden',value="#{fechaIni}",placeholder='fecha inicio', name='ffini')
+                                      .col-xs-6.col-md-6
+                                        .form-group
+                                          label.col-xs-12(for='inputname') Fecha Fin
+                                          .col-xs-12
+                                            input.emply#ffin.form-control.input-sm(type='date',value="#{fechaFin}",min='#{fechaAct}',placeholder='fecha fin', name='ffin',data-fv-notempty='true', data-fv-message='Ingrese fecha final') 
+                              .col-md-12                        
+                                .form-group             
+                                  .col-md-12
+                                    .row
+                                      .col-xs-6.col-md-6
+                                        .form-group
+                                          label.col-xs-12(for='inputname') Categoria
+                                          .col-xs-12
+                                            //- -var cate='',
+                                            //- -var sel='';
+                                            //- if DP.categoria=='m'
+                                              //- cate='medico';
+                                              sel='selected';
+                                            //- else if DP.categoria=='r'
+                                              //- cate='recepcionista';
+                                              sel='selected';
+                                            //- else
+                                              sel='selected';    
+                                              //- cate='auxiliar';
+                                            select.emply.form-control(value="#{DP.categoria}",name='categoria',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                                              option(value="",selected='') seleccione
+                                                if DP.categoria=='m'
+                                                  option(value="m",selected='selected') Medico
+                                                  option(value="r") Recepcionista
+                                                  option(value="a") Auxiliar
+                                                else if DP.categoria=='r'
+                                                  option(value="m") Medico
+                                                  option(value="r",selected='selected') Recepcionista
+                                                  option(value="a") Auxiliar
+                                                else
+                                                  option(value="m") Medico
+                                                  option(value="r") Recepcionista
+                                                  option(value="a" selected='selected') Auxiliar
+                                                  
+                                      .col-xs-6.col-md-6                                                      
+                          
+                .form-group
+                  .row
+                  label.col-sm-12(for='telefono') Telefono
+                  .col-sm-12
+                    if DU.telefono===0
+                      //- code
+                      input.form-control.input-sm(type='text', id='',value="",maxlength='8',minlength='6',data-fv-stringlength-message='verifique rango',placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+                    else
+                      input.form-control.input-sm(type='text', id='',value="#{DU.telefono}",maxlength='8',minlength='6',data-fv-stringlength-message='verifique los digitos',placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+                .form-group
+                  label.col-md-12(for='correo')
+                    | Correo Electronico
+                  .col-md-12(id='')
+                    if DU.correo===null
+                      //- code
+                      input.form-control.input-sm(type='email', id='',value="", placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+                    else
+                      input.form-control.input-sm(type='email', id='',value="#{DU.correo}", placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+                      //- code
+                .form-group
+                  label.col-md-12(for='foto')
+                    | fotografia actual
+                    &nbsp;
+                    &nbsp;
+                    a(type="button",href="#")#btn-cb.btn.btn-success.btn-xs cambiar  
+                    &nbsp;
+                  .col-md-12(style='text-align:center')
+                    img(src="images/#{DU.foto}", alt="alt",width='200px', style='box-shadow: 0px 1px 15px rgba(252, 252, 252, 0.6) ! important;')
+                    input#contador(type="hidden" name='fotoriginal',value="#{DU.foto}")  
+                    input#contador(type="hidden" name='cont',value="0")  
+                .form-group#fotoC(style='display:none')
+                  label.col-md-12
+                    | fotografia a modificar
+                    &nbsp;
+                    &nbsp;
+                    a(type="button",href="#")#btn-borrar.btn-xs.btn.btn-danger 
+                      i.fa.fa-times
+                    &nbsp;
+                  .col-md-12  
+                    .row
+                      .col-md-12#fotoMod
+                        input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-file="true",data-fv-file-extension="jpeg,png,gif,jpg",data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg", data-fv-file-message='Error al subir imagen')          
+                .form-group
+                  label.col-md-12(for='descripcion')
+                    | Observaciones
+                  .col-md-12(for='descripcion')
+                    textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                      | #{DU.observacion}
+                .modal-footer.text-center
+                  button#btn-User.btn.btn-success(type='submit') Aceptar
+                  button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type='text/javascript').
+  $('#btn-cb').on('click',function(){
+    $('#fotoC').show(500);          
+    //- $('#fotoMod').append('<input class=".form-control .input-sm" type="file"  placeholder="fotografia" name="foto"  data-fv-file="true" data-fv-file-extension="jpeg,png,gif,jpg" data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg"  data-fv-file-message="Error al subir imagen">')
+    $(this).hide(500)
+    $('#contador').val('1')
+  })
+  $('#btn-borrar').on('click',function(){
+    $('#btn-cb').show(500);
+    $('#contador').val('0')
+    $('#fotoC').hide(500);
+    //- $(this).hide(1000)
+  })

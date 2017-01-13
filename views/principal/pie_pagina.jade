@@ -1,0 +1,56 @@
+script(src='jquery/dist/jquery.js')
+script(src='bootstrap/dist/js/bootstrap.js')
+//- script(src='javascripts/metisMenu/metisMenu.min.js')
+
+script(src='javascripts/formValidation/formValidation.min.js')
+script(src='javascripts/formValidation/framework/bootstrap.min.js')
+script(src='javascripts/formValidation/es_ES.js')
+script(src='javascripts/jqueryform/jquery.form.js')
+    
+script(src='javascripts/metisMenu/menu.js')
+script(src='javascripts/raphael/raphael.min.js')    
+script(src='javascripts/tema/sb-admin-2.js')
+script(src='datatables/media/js/jquery.dataTables.js')
+script(src='datatables-bootstrap/js/dataTables.bootstrap.min.js')
+script(src='datatables-responsive/js/dataTables.responsive.js')
+script(src='datatables-responsive/js/responsive.bootstrap.js')
+//- script(src='jqueryui/jquery-ui.js')
+script(src='bootstrap-datepicker/dist/js/bootstrap-datepicker.js')
+  //- script(src='jquery-masked-input/dist/jquery.masked-input.js')
+script(src='jquery-mask-plugin/dist/jquery.mask.js')
+  
+//- script(src='javascripts/DataTable/dataTables.bootstrap4.min.js')
+//- script(src='javascripts/ajax/opciones.js')
+script(src='javascripts/ajax/AjaxUsuarios.js') 
+script(src='javascripts/ajax/AjaxPacientes.js') 
+script(src='javascripts/ajax/AjaxServicios.js') 
+script(src='javascripts/ajax/AjaxConsultas.js') 
+script(src='javascripts/ajax/AjaxTratamientos.js') 
+script(src='javascripts/ajax/AjaxFacturas.js') 
+script(type='text/javascript').
+  $(document).ready(function(){
+    $('.enlace').on('click',function(){
+      //- alert()
+      var enlace=$(this).data('href');
+      $.ajax({
+        type:'post',
+        url:enlace,
+        success:function(resp){
+            $('#contendor').html(resp);
+            //- console.log();
+                //- $('#table-usuarios').DataTable({
+                //-   "oLanguage": {
+                //-     "sUrl": "javascripts/DataTable/Spanish.lang"
+                //-   },
+                //-   "dom":'rt<button>ip',
+                //-   //- "ordering":false,
+                //-   "pageLength":5
+                //- });
+        },
+        error:function(){
+          
+        }
+        
+      })
+    })  
+  })

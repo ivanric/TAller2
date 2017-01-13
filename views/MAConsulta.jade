@@ -1,0 +1,87 @@
+form#FACons.form-horizontal(action='/Consultas/adicionarConsulta',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MACons.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #ConsM.modal-dialog.modal-md.modal-md(style='width:25%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Nueva Consulta
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.col-sm-12(for='telefono') Seleccione Paciente
+                .col-sm-12
+                  select.emply.form-control(name='codpac',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                    option(value="") seleccione paciente
+                    each LP,i in LPacientes
+                      option(value='#{LP.codpac}') #{LP.nombre} #{LP.ap} #{LP.am}
+              .form-group
+                label.col-sm-12(for='telefono') Fecha de Consulta
+                .col-sm-12       
+                  input#fecha_cons.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Consulta')
+                  input#fecha_ocul.form-control.input-sm(type='hidden', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Consulta')
+                  
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='ritresp') Ritmo Respiratorio
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='ritmo respiratorio..', name='ritresp',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3',data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='temp') Temperatura
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='temperatura..', name='temp',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3', data-fv-integer='true', data-fv-integer-message='solo numero')
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='altura') Altura
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='altura..', name='altura',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='peso') Peso
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='temperatura..', name='peso',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3', data-fv-integer='true', data-fv-integer-message='solo numero')
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='puls') Pulsaciones
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='pulsaciones..', name='puls',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='peso') Precio
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='',placeholder='precio..', name='precio',maxlength='3',minlength='2',data-fv-stringlength-message='digitos mayor a 2 y menor a 3', data-fv-integer='true', data-fv-integer-message='solo numero',data-fv-notempty='true',data-fv-message='ingrese el precio de la consulta')        
+              
+              .form-group
+                label.col-md-12(for='motivo')
+                  | Motivo
+                .col-md-12(for='motivo')
+                  textarea.form-control(type='text',name='motivo',maxlength="30",data-fv-stringlength-message="los digitos deven ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  var date=new Date();
+  var ndate=formatDate(date);
+  $('#fecha_cons').val(ndate);
+  $('#fecha_ocul').val(ndate);
+  $('#fecha_cons').attr({
+    'disabled':'disabled'
+    //'min':ndate,
+    //'max':ndate
+  })
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }

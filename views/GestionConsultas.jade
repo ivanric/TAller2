@@ -1,0 +1,95 @@
+.row(id='')
+  .col-md-12
+    a#addUsuario.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;', onclick='Consultas.adicionar()') Nueva Consulta
+      span.glyphicon.glyphicon-plus
+  #FiltrosPrestamos.col-md-12
+    .row
+      .col-md-6
+        .row
+          .col-md-6
+            | nombre paciente
+          .col-md-6
+            | Fecha consulta
+      .col-md-6      
+    .row
+      .col-md-6
+        .row
+          .col-md-6
+            .input-group
+              .input-group-addon
+                i.fa.fa-search(aria-hidden="true")
+              input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='nombre paciente')
+          .col-md-6
+            .input-group
+              .input-group-addon
+                i.fa.fa-search(aria-hidden="true")
+              input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='fecha de consulta')
+      .col-md-6(style='text-align: right;')
+        .row
+          .col-md-12
+            label.radio-inline
+              input#activos(type='radio', name='iestadoPrest', value='1')
+              label(for='activos')
+                span
+              |  Activos
+            label.radio-inline
+              input#bajas(type='radio', name='iestadoPrest', value='0')
+              label(for='bajas')
+              | Bajas
+            label.radio-inline
+              input#todos(type='radio', name='iestadoPrest', value='-1', checked='checked')
+              label(for='todos')
+                span
+              | Todos
+  .col-md-12
+    table#table-consultas.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+      thead
+        tr
+          th #
+          th Diag.
+          th Paciente 
+          th Encargado
+          th Fecha de Consulta
+          th Precio
+          th(style="text-align:center") Opciones
+      tbody
+        each LC,i in LConsultas
+          tr
+            td #{i+1}
+            td 
+              input(id='#{LC.codcons}',style='display:inline;',type="radio" name='diag',accesskey='#{LC.codcons}',data-id='#{LC.codcons}',value="#{LC.codcons}",onclick='Consultas.ListDiag(this)')  
+            td #{LC.namepac} #{LC.appac} #{LC.ampac}  
+            td #{LC.nombre} #{LC.ap} #{LC.am}
+            td #{LC.fecha_cons}
+            td #{LC.precio}
+            td(style="text-align:center")
+              if LC.estado===1
+                a.btn-xs.btn.btn-neon.btn-neon-green(href='#',accesskey='#{LC.codcons}',data-id='#{LC.codcons}',onclick="Consultas.factura(this)")
+                  i.fa.fa-edit  Agregar Factura
+  .row
+    .col-md-2
+    .col-md-8.text-center.DetalleD(style='display:inline')
+    .col-md-2
+script(type='text/javascript').
+  function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+  }
+  
+  //- $(document).ready(function(){
+    $('#table-consultas').DataTable({
+      "oLanguage": {
+        "sUrl": "javascripts/DataTable/Spanish.lang"
+      },
+      "dom":'rt<button>ip',
+      //- "ordering":false,
+      "pageLength":5
+    });
+  //- })

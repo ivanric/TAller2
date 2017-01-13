@@ -1,0 +1,26 @@
+form#FADiag.form-horizontal(action='/Consultas/adicionarDiagnostico',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MADiag.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #addDiag.modal-dialog.modal-md.modal-md(style='width:18%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Nuevo Diagnostico
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.col-sm-12(for='telefono') Precio
+                .col-sm-12
+                    input.form-control.input-sm(type='text', id='',placeholder='Precio..', name='precio',maxlength='3',minlength='1',data-fv-stringlength-message='digitos entre 1 y 3',data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                    input(type="hidden" value="#{id}",name='codcons')  
+              .form-group
+                label.col-md-12(for='descripcion')
+                  | Descripcion
+                .col-md-12(for='descripcion')
+                  textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  

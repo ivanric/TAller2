@@ -1,0 +1,63 @@
+form#FATrat.form-horizontal(action='/Tratamientos/adicionarTratamiento',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MATrat.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #ConsM.modal-dialog.modal-md.modal-md(style='width:20%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Nuevo Tratamiento
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.col-sm-12(for='telefono') Seleccione Paciente
+                .col-sm-12  
+                  select#pac.emply.form-control(name='codpac',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                    option(value="") seleccione paciente
+                    each LP,i in LPacientes
+                      option(value='#{LP.codpac}',data-id="#{LP.codc}",accesskey='#{LP.codc}') #{LP.nombre} #{LP.ap} #{LP.am}
+                input#codigoC(type="hidden",name="codcons")    
+              .form-group
+                label.col-sm-12(for='telefono') Fecha de Tratamiento
+                .col-sm-12       
+                  input#fecha_cons.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Consulta')
+                  input#fecha_ocul.form-control.input-sm(type='hidden', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Consulta')
+              .form-group
+                label.col-sm-12(for='telefono') Seleccione Servicio
+                .col-sm-12
+                  select.emply.form-control(name='codserv',data-fv-notempty='true',data-fv-message='Seleccione servicio',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                    option(value="") seleccione Servicio
+                    each LS,i in LServicios
+                      option(value='#{LS.codserv}') #{LS.nombre}
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  var date=new Date();
+  var ndate=formatDate(date);
+  $('#fecha_cons').val(ndate);
+  $('#fecha_ocul').val(ndate);
+  $('#fecha_cons').attr({
+    'disabled':'disabled'
+    //'min':ndate,
+    //'max':ndate
+  })
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+  $('#pac').on('change',function(){
+    var cod=$("#pac option:selected").attr('accesskey');
+    //- var idC=$(this).data('id');
+    //- var idC=$(this).val();
+      //- alert("codcons: ",tipo)
+    console.log("codcons-> ",cod);  
+    $('#codigoC').val(cod)
+  })

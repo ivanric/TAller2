@@ -11,16 +11,12 @@ html(lang='en')
     //- link(href='bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
     link(href='stylesheets/bootstrap/bootstrap.min.css', rel='stylesheet')
     link(href='stylesheets/style.css', rel='stylesheet')
+    link(href='stylesheets/tema/sb-admin-2.css', rel='stylesheet')
     link(href='stylesheets/iconos/elegant-icons-style.css', rel='stylesheet')
     link(href='stylesheets/formValidation/formValidation.min.css', rel='stylesheet') 
     
     //- Custom Fonts
     link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
-    //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-    //- WARNING: Respond.js doesn't work if you view the page via file://
-    //-if lt IE 9
-      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
   body
     div
       img(src='images/img.jpg', width='100%;', height='150px;')
@@ -34,7 +30,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
           //- Este es el logo
-          a.navbar-brand.page-scroll(href='index.html')
+          a.navbar-brand.page-scroll(href='index')
             | electric control
         //- aqui esta para edesconectarse del sistema y lo que hace referencia a colpasador
         #colapsador.collapse.navbar-collapse
@@ -45,7 +41,8 @@ html(lang='en')
                 //- img.img-responsive.img-circle.pull-left(src='../img/usuario.gif')
                 i.fa.fa-user.fa-3x 
                 //- b.caret  
-              ul.dropdown-menu.user(style='background: rgba(15, 2, 98, 0.8) none repeat scroll 0% 0%; border-radius: 7px; padding-top: 3px;')
+              //- ul.dropdown-menu.user(style='background: rgba(15, 2, 98, 0.8) none repeat scroll 0% 0%; border-radius: 7px; padding-top: 3px;')
+              ul.dropdown-menu.user
                 //-
                   <li>
                   <span class="triangle fa fa-caret-up fa-2x" style="color: rgba(6, 15, 84, 0.67) ! important;padding-left: 119px;"></span>
@@ -63,6 +60,7 @@ html(lang='en')
 
     script(src='javascripts/jquery.js')
     //- Bootstrap Core JavaScript
+    script(src='javascripts/tema/sb-admin-2.js')
     script(src='javascripts/bootstrap/bootstrap.min.js')
     //- Morris Charts JavaScript
     script(src='javascripts/plugins/morris/raphael.min.js')

@@ -10,6 +10,15 @@ var session= require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var usuarios = require('./routes/Usuarios');
+var pacientes = require('./routes/Pacientes');
+var servicios = require('./routes/Servicios');
+var consultas = require('./routes/Consultas');
+var tratamientos = require('./routes/Tratamientos');
+var facturas = require('./routes/Facturas');
+var historiales = require('./routes/Historiales');
+// var citas = require('./routes/Citas');
+// var archivos = require('./routes/Archivos');
+// var roles = require('./routes/Roles');
 
 var app = express();//se requiere el express
 
@@ -36,9 +45,35 @@ app.use(session({
     saveUninitialized: true
 }))
 
+// app.use(multer({
+//     dest: './uploads/',
+//     rename: function (fieldname, filename) {
+//         return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+//     },
+//     onFileUploadStart: function (file) {
+//         console.log(file.fieldname + ' is starting ...')
+//     },
+//     onFileUploadData: function (file, data) {
+//         console.log(data.length + ' of ' + file.fieldname + ' arrived')
+//     },
+//     onFileUploadComplete: function (file) {
+//         console.log(file.fieldname + ' uploaded to  ' + file.path)
+//     }
+// }));
+
+
 app.use('/', routes);
 app.use('/users', users);
-app.use('/', usuarios);
+app.use('/Usuarios', usuarios);
+app.use('/Pacientes', pacientes);
+app.use('/Servicios', servicios);
+app.use('/consultas', consultas);
+app.use('/Tratamientos', tratamientos);
+app.use('/Facturas', facturas);
+app.use('/Historiales', historiales);
+// app.use('/Citas', citas);
+// app.use('/Archivos', archivos);
+// app.use('/Roles', roles);
 
 
 

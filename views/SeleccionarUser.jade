@@ -1,0 +1,39 @@
+form#Conf.form-horizontal(action='#',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')                  
+  #AUConf.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel")
+    .modal-dialog.modal-sm(role="document")
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") ×
+          |         
+          h4#myModalLabel.modal-title(style="text-align:center;") CONFIRMACION
+        |       
+        .modal-body
+          label(style="text-align:center;") Seleccione el tipo de usuario...
+            &nbsp  
+            &nbsp  
+           .form-group
+                  label.col-lg-3.control-label(for='')  Tipo
+                  .col-lg-9
+                    //- <div class="row">
+                    //- <div class="col-md-6">
+                    .radio  
+                      label
+                        input#adm(type='radio', name='tipoUsu', value='a', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese tipo')
+                        | Administrativo
+                    //- </div>
+                    //- <div class="col-md-6">
+                    .radio  
+                      //- &nbsp;
+                      label
+                        input#pers(type='radio', name='tipoUsu', value='p', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese tipo')
+                        |  Personal      
+        .modal-footer(style="text-align:center")
+          button.btn.btn-primary(type="submit")
+            i.glyphicon.glyphicon-ok
+            |  Aceptar
+          |         
+          button#ACancel.btn.btn-danger(type="button", data-dismiss="modal",style="display:none")
+            i.glyphicon.glyphicon-remove-sign
+            |  Cancelar
+  

@@ -1,54 +1,47 @@
 .row
-  #add.col-md-12
-    a.navbar-right.btn.btn-neon.btn-neon-pink.btn-same-width.btn-white-text(style='margin:1em;', onclick='Usuarios.adicionar()')
-      | Nuevo Usuario
+  #add.col-md-12.col-xs-12
+    a#addUsuario.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;', onclick='Usuarios.adicionar()') Nuevo Usuario
+      &nbsp;
       span.glyphicon.glyphicon-plus
-  .col-md-12
+  .col-md-12.col-xs-12
     .row
-      .col-md-4
+      .col-md-4.col-xs-4
         | Buscar: 
-        input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;')
+        input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='Buscar')
       | &#x9;&#x9;&#x9;
-      .col-md-3
-        select#select-tipousu.form-control.input-sm(style='width: 12em;')
+      .col-md-3.col-xs-2
+        select#select-tipousu.form-control.input-xs(style='width: 12em;')
           option(value='-1', selected='selected') Tipo Personal...
           | 
-          option(value='G') Gerente
+          option(value='A') Administrativo
           | 
-          option(value='E') Empleado
-          | 
-          option(value='F') Facturador
+          option(value='P') Personal
       | 
-      .col-md-5(style='text-align: right;')
+      .col-md-5.col-xs-6(style='text-align: right;')
         label.radio-inline
           input#activos(type='radio', name='iestado', value='1') 
           label(for='activos')
             span
-          | &#x9;&#x9;&#x9;&#x9;  Activos
-        | &#x9;&#x9;&#x9;&#x9;
+          |  Activos
         label.radio-inline
-          input#bajas(type='radio', name='iestado', value='0')
-          |  
-          | &#x9;&#x9;&#x9;&#x9;  
+          input#bajas(type='radio', name='iestado', value='0')  
           label(for='bajas')
             span
-          | &#x9;&#x9;&#x9;&#x9; Bajas
-        | &#x9;&#x9;&#x9;&#x9;
+          | Bajas
         label.radio-inline
           input#todos(type='radio', name='iestado', value='-1', checked='checked')
-          |  
-          | &#x9;&#x9;&#x9;&#x9;&#x9;
           label(for='todos')
             span
-          | &#x9;&#x9;&#x9;&#x9;&#x9;Todos
-  .col-md-12
-    table#table-usuarios.table.texto.table-condenced.display.responsive.nowrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+          | Todos
+  .col-md-12.col-xs-12
+    table#table-usuarios.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
       thead
         tr
           th #
           th Foto
-          th Apellidos y Nombres
+          th Nombres y Apellidos 
           th Cédula
+          th Tipo
           th(style="text-align:center") Estado
           th(style="text-align:center") Opciones
           //- th B
@@ -58,47 +51,75 @@
       tbody
         each LU,i in LUsuarios
           tr
-            td #{i}
-            td #{LU.foto}
-            td #{LU.ap} #{LU.am} #{LU.nombre}
-            td #{LU.ci}
+            td #{i+1}
             td
-              a.neon-circle.neon-circle-green(href='#', accesskey='#{LU.estado}',style="text-align:center")
-                  i.glyphicon.glyphicon-arrow-up
+              img(src="images/#{LU.foto}",alt="alt",width="30px")
+            td #{LU.nombre} #{LU.ap} #{LU.am} 
+            td #{LU.ci}
+            //- each LP,i in LPersonales
+              //- if LP.codusu==LU.codusu
+              //- td #{LP.categoria}
+              //- else
+                //- td #{LU.tipo}
+            if LU.tipo=='a'
+              //- td #{LU.tipo}
+              td Administrativo
+            else
+              td Personal
+          
+            if LU.estado=='1'
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LU.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-up
+            else
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LU.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-down
             td(style="text-align:center")
-              a.btn-xs.btn.btn-neon.btn-neon-brown(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
+              if LU.estado===1
+                a.btn-xs.btn.btn-neon.btn-neon-brown(href='#', accesskey='#{LU.tipo}',data-id='#{LU.codusu}',onclick="Usuarios.modificar(this)")
                   i.fa.fa-edit  Modificar
-              &nbsp;    
-              a.btn-xs.btn.btn-neon.btn-neon-danger(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
-                  i.fa.fa-edit  Borrar   
-              &nbsp;    
-              a.btn-xs.btn.btn-neon.btn-neon-green(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
-                  i.fa.fa-edit  Habilitar                         
-              &nbsp;    
-              a.btn-xs.btn.btn-neon.btn-neon-yellow.btn-white-text(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
-                  i.fa.fa-edit  Ver
-              &nbsp;    
-              a.btn-xs.btn.btn-neon.btn-neon-blue(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}')
-                  i.fa.fa-edit  Acceso                                     
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              if LU.estado===1
+                a.btn-xs.btn.btn-neon.btn-neon-danger(href='#', accesskey='#{LU.tipo}',data-id='#{LU.codusu}',onclick='Usuarios.eliminar(this)')
+                  i.fa.fa-trash-o  Eliminar
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              if LU.estado===0
+                a.btn-xs.btn.btn-neon.btn-neon-green(href='#', accesskey='#{LU.tipo}',data-id='#{LU.codusu}',onclick='Usuarios.habilitar(this)')
+                  i.fa.fa-undo  Habilitar
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a.btn-xs.btn.btn-neon.btn-neon-yellow.btn-white-text(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}',onclick="Usuarios.Ver(this)")
+                  i.fa.fa-eye  Ver
+              &nbsp;
+              if LU.estado===1
+                -var existe="";
+                each LD,i in LDatos
+                  if LU.codusu==LD.codusu
+                    -existe="cuenta";
+                  else
+                if (existe==='cuenta')
+                  a.btn-xs.btn.btn-neon.btn-neon-pink(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}',onclick="Usuarios.MAccesso(this)")
+                    i.fa.fa-user-plus  cambiar   
+                else
+                    a.btn-xs.btn.btn-neon.btn-neon-pink(href='#', accesskey='#{LU.codusu}',data-id='#{LU.codusu}',onclick="Usuarios.Accesso(this)")
+                      i.fa.fa-user-plus  Asignar    
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
 script(type='text/javascript').
-  $(document).ready(function(){
-    //- $('#select-tipousu').chosen({
-    //- no_results_text : "No se encuentra:",
-    //- width : '100%'
-    //- });  
-    /*OPCION USUARIOS*/
-    var $dt_user = $('#table-usuarios').DataTable({
-           //- $('#table-usuarios').DataTable(
-       "oLanguage": {
-       "sUrl": "../javascripts/DataTable/Spanish.lang"
-       },
-       "dom":'rt<button>ip',
-       // "ordering":false,
-       "pageLength":5,
-         
+  //- $(document).ready(function(){
+    $('#table-usuarios').DataTable({
+      "oLanguage": {
+        "sUrl": "javascripts/DataTable/Spanish.lang"
+      },
+      "dom":'rt<button>ip',
+      //- "ordering":false,
+      "pageLength":5
     });
-  // OptionUser($dt_user);
-
-
-
-  })
+  //- })

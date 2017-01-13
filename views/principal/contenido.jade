@@ -1,0 +1,58 @@
+div(style='margin-top: 0;background: rgba(125, 102, 59, 0.29);height: 150px;')
+|     
+#wrapper
+//- Navigation
+//- nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+nav.navbar.navbar-inverse.navbar-static-top(role='navigation', style='margin-bottom: 0')
+  .navbar-header
+    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+      span.sr-only Toggle navigation
+      |                     
+      span.icon-bar
+      |                     
+      span.icon-bar
+      |                     
+      span.icon-bar
+    |                 
+    a.navbar-brand.neon-title(href='/inicio') VIP DENTAL
+  // /.navbar-header
+  ul.nav.navbar-top-links.navbar-right
+    li.dropdown.responsivo
+      a.dropdown-toggle(data-toggle='dropdown', href='#')
+        i.fa.fa-user.fa-fw
+        |  
+        i.fa.fa-caret-down
+      |                     
+      ul.dropdown-menu.dropdown-user
+        li
+          a(href='#')
+            i.fa.fa-user.fa-fw
+            |  Perfil
+        |                         
+                  
+        li.divider
+        |                         
+        li
+          a#cerrar(href='/salir')
+            i.fa.fa-sign-out.fa-fw
+            |  Cerrar Sesion
+      //- /.dropdown-user
+    //- /.dropdown
+  //- /.navbar-top-links
+  .sidebar(role='navigation')
+    .sidebar-nav.navbar-collapse
+      ul#side-menu.nav(style="background: #001f8e;")
+        each menu, i in menus
+          li
+            a.dropmenu(href='#')
+              i.fa.fa-wrench.fa-fw
+              |  Gestion #{menu.nombre}
+              span.fa.arrow               
+            ul.nav.nav-second-level(style='display:none;')
+              li
+                a.enlace(href='#')(data-href='#{menu.enlace}') 
+                  | >> #{menu.nombre}M      
+#page-wrapper(style="height: auto !important;")
+  #contendor(style="background: #ccc3;padding: 0px 15px;")
+    | contenido
+  #contendor-modales  

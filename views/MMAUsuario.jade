@@ -1,0 +1,216 @@
+//- form#FMUA.form-horizontal(action='/Usuarios/ModificaraUsuarioAdministrativo',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+form#FMUA.form-horizontal(action='/Usuarios/ModificaraUsuarioAdministrativo',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MMUA.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Modificar Usuario Administrartivo
+        .modal-body
+          .row
+            each DU,i in DUADMIN
+              .col-md-12
+                .row
+                    .col-xs-6.col-md-6
+                      .form-group
+                        label.col-xs-12(for='inputname') Cédula
+                        .col-xs-12
+                          input.form-control.input-sm(type='text', id='',value="#{DU.ci}", maxlength='8',minlength='8',data-fv-stringlength-message='Ingrese 8 digitos',placeholder='cedula..', name='ci', data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                    .col-xs-6.col-md-6
+                      .form-group                    
+                        label.col-xs-12(for='inputname') Nombre
+                        .col-xs-12
+                          input.form-control.input-sm(type='text', id='',value="#{DU.nombre}",placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+                .row
+                  .col-md-6  
+                    .form-group
+                      label.col-sm-12(for='ap') Ap Paterno
+                      .col-sm-12
+                        input.form-control.input-sm(type='text', id='',value="#{DU.ap}",placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
+                  .col-md-6
+                    .form-group  
+                      label.col-sm-12(for='am') Ap Materno
+                      .col-sm-12
+                        input.form-control.input-sm(type='text',  id='',value="#{DU.am}",placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+                .form-group
+                  label.col-lg-3.control-label(for='') G&eacute;nero
+                  |   
+                  .col-lg-9
+                    if DU.genero==='m'
+                      //- code
+                      label.radio-inline
+                        input#inlineRadio1(checked='checked',type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        | Masculino
+                      &nbsp;
+                      label.radio-inline
+                        input#inlineRadio2(type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        |  Femenino
+                    else
+                      label.radio-inline
+                        input#inlineRadio1(type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        | Masculino
+                      &nbsp;
+                      label.radio-inline
+                        input#inlineRadio2(checked='checked',type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                        |  Femenino
+                      //- code
+
+                .row
+                  .col-md-6#caja  
+                    .form-group#caja_fecha_actual
+                      label.col-sm-12(for='fecha')  Fecha de Naciemiento 
+                      //- label.col-sm-12(for='fecha')  Fecha de Naciemiento #{fechaNac}
+                      .col-sm-12
+                        input#fecha_nac.form-control.input-sm(value='#{fechaNac}',type='date',min='1990-01-01',max='2013-12-31',placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento',maxlength='10',minlength='10',data-fv-stringlength-message='corriga el formato')
+                        //- input#fecha_nac.form-control.input-sm(value='#{fechaNac}',type='date',min='1990-01-01',max='2014-01-01',step='7',placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento',maxlength='10',minlength='10',data-fv-stringlength-message='corriga el formato')
+                        //- input#fecha_nac.form-control.input-sm(value='#{DU.fechnac}',type='date', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento',maxlength='10',minlength='10',data-fv-stringlength-message='corriga el formato')
+                    //- .form-group#caja_fecha_modificada(style='display:none')  
+                    //-   label.col-sm-12(for='fechaM')  Fecha de Naciemiento 
+                    //-   .col-md-12  
+                    //-     input#fecha_inputM.form-control.input-sm(type='date', placeholder='fecha nacimiento', name='fechaM',maxlength='10',data-fv-notempty='true', data-fv-message='Ingrese fecha modificada correcta')  
+                  .col-md-6
+                    .form-group  
+                      label.col-sm-12(for='direccion') Direccion 
+                      .col-sm-12
+                        if DU.direccion===null
+                          input.form-control.input-sm(name='direccion',type='text', id='', placeholder='direccion..', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                          //- input#adm(type='hidden', name='direccion', value='a', style='display: inline;')                          
+                        else
+                          input.form-control.input-sm(name='direccion',type='text', id='',value="#{DU.direccion}", placeholder='direccion..', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                          //- input#adm(type='hidden', name='direccion1', style='display: inline;')
+                          //- code
+                .form-group(style="display:none")
+                  label.col-lg-3.control-label(for='')  Tipo
+                  .col-lg-9
+                    //- <div class="row">
+                    //- <div class="col-md-6">
+                    label.radio-inline
+                      input#adm(type='radio', name='tipo', value='a', style='display: inline;')
+                        
+                      | Administrativo
+                    //- </div>
+                    //- <div class="col-md-6">
+                    //- &nbsp;
+                    //- label.radio-inline
+                    //-   input#pers(type='radio', name='tipo', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese tipo')
+                    //-   |  Personal
+                    //- </div>
+                    //- </div>                        
+                .form-group
+                  .row
+                  label.col-sm-12(for='telefono') Telefono
+                  .col-sm-12
+                    if DU.telefono===0
+                      //- code
+                      input.form-control.input-sm(type='text', id='',value="",maxlength='8',minlength='6',data-fv-stringlength-message='verifique rango',placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+                    else
+                      input.form-control.input-sm(type='text', id='',value="#{DU.telefono}",maxlength='8',minlength='6',data-fv-stringlength-message='verifique los digitos',placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+                      //- code
+                .form-group
+                  label.col-md-12(for='correo')
+                    | Correo Electronico
+                  .col-md-12(id='')
+                    if DU.correo===null
+                      //- code
+                      input.form-control.input-sm(type='email', id='',value="", placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+                    else
+                      input.form-control.input-sm(type='email', id='',value="#{DU.correo}", placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+                      //- code
+                .form-group
+                  label.col-md-12(for='foto')
+                    | fotografia actual
+                    &nbsp;
+                    &nbsp;
+                    a(type="button",href="#")#btn-cb.btn.btn-success.btn-xs cambiar  
+                    &nbsp;
+                  .col-md-12(style='text-align:center')
+                    img(src="images/#{DU.foto}", alt="alt",width='200px', style='box-shadow: 0px 1px 15px rgba(252, 252, 252, 0.6) ! important;')
+                    input#contador(type="hidden" name='fotoriginal',value="#{DU.foto}")  
+                    input#contador(type="hidden" name='cont',value="0")  
+                .form-group#fotoC(style='display:none')
+                  label.col-md-12
+                    | fotografia a modificar
+                    &nbsp;
+                    &nbsp;
+                    a(type="button",href="#")#btn-borrar.btn-xs.btn.btn-danger 
+                      i.fa.fa-times
+                    &nbsp;
+                  .col-md-12  
+                    .row
+                      .col-md-12#fotoMod
+                        input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-file="true",data-fv-file-extension="jpeg,png,gif,jpg",data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg", data-fv-file-message='Error al subir imagen')          
+                      //- .col-md-2(style='text-align:left') 
+                        button#btn-borrar.btn-xs.btn.btn-danger 
+                          i.fa.fa-times
+                .form-group
+                  label.col-md-12(for='descripcion')
+                    | Observaciones
+                  .col-md-12(for='descripcion')
+                    textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                      //- textarea.form-control(type='text',name='descripcion',data-fv-notempty='true',data-fv-message='ingrese alguna descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                      | #{DU.observacion}
+                .modal-footer.text-center
+                  button#btn-UserM.btn.btn-success(type='submit') Aceptar
+                  button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  //- $('#fecha_nac').mask('00/00/0000');
+  //- $('#fecha_nac').on('click',function(){
+  //-   $(this).val('')
+  //-   $(this).datepicker();
+  //- })
+  //- var estFechaM=$('fecha_inputM').val();
+  //- 
+  //-   $('#btn-UserM').on('click',function(){
+  //-     alert(estFechaM=='')
+  //-     if(estFechaM!=''){
+  //-       //- $('#caja_fecha_modificada').remove();
+  //-     }else{
+  //-       $(this).removeAttr('disabled')
+  //-     }
+  //-   })
+  
+  //- var cd=$('#fecha_nac').attr('type');
+  //- //- alert(cd)
+  //- if (cd==='text'){
+  //-   $('#fecha_nac').on('click',function(){
+    //- alert('sigue text')
+    //- $('#fecha_nac').datepicker();
+      
+    //- $(this).removeAttr('type');
+    //- $(this).val('');
+    //- $('#caja_fecha_modificada').show(100);
+    //- $('#fecha_inputM').mask('00/00/0000');
+    //- $('#fecha_nac').val('');
+    //- $('#caja_fecha_actual').hide(100);
+    //- $('#btn-UserM').removeAttr('disabled')
+    //- $('#btn-UserM').removeClass('disabled')
+    
+    //- $(this).attr('type','date');
+    //- $('#fecha_nac').unbind('click');
+      //- $('#caja_fecha_actual').remove();
+      //- $.ajax({
+      //-   url:'/Usuarios/MUsuarioFecha',
+      //-   type:'post',
+      //-   success:function(resp){
+      //-     $('#caja').html(resp)
+      //-   }
+      //- })
+  //-   })
+  //-   
+  //- }
+  //- else{
+  //- 
+  //- }
+  $('#btn-cb').on('click',function(){
+    $('#fotoC').show(500);          
+    //- $('#fotoMod').append('<input class=".form-control .input-sm" type="file"  placeholder="fotografia" name="foto"  data-fv-file="true" data-fv-file-extension="jpeg,png,gif,jpg" data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg"  data-fv-file-message="Error al subir imagen">')
+    $(this).hide(500)
+    $('#contador').val('1')
+  })
+  $('#btn-borrar').on('click',function(){
+    $('#btn-cb').show(500);
+    $('#contador').val('0')
+    $('#fotoC').hide(500);
+    //- $(this).hide(1000)
+  })

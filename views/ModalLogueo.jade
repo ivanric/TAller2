@@ -1,13 +1,11 @@
 #Modallog.modal.fade
   .modal-dialog.modal-sm
     .modal-content
-      form#logvalidate.form-logeo(action='Usuario/identificasion', method='post', novalidate='')
+      form#logvalidate.form-logeo(action='/identificasion', method='post', novalidate='')
         .modal-header
           button.close(type='button', data-dismiss='modal', aria-label='Close')
             span(aria-hidden='true') ×
           h4.modal-title Conexion al Sistema
-        p.lock
-          i.icon_lock_alt(style='color: rgb(66, 180, 180);')
         .modal-body
           .form-group
             label.control-label(for='') Usuario
@@ -26,7 +24,7 @@
           button#btn-log.btn.btn-success(type='submit')
             span.fa.fa-external-link
             |  aceptar
-          button.btn.btn-danger(type='button', data-dismiss='modal')
+          button.btn.btn-danger(type='submit', data-dismiss='modal')
             span.fa.fa-remove
             |  Cancelar
     //-.modal-content

@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    .col-md-12
+      a#addDiag.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;',data-id='#{CodC}',onclick='Consultas.Ndiagnostico(this)') Nuevo Diagnostico
+        span.glyphicon.glyphicon-plus
+  .col-md-12
+    h4 .::DETALLE DE DIAGNOSTICOS::.
+  .lista.col-md-12
+    .col-md-12
+      table#TDDiag.text-center.table.texto.table-hover.table-condenced.display(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+        thead(class='text-align:center;')
+          tr(class='text-align:center;')
+            th(style="text-align:center") #
+            th(style="text-align:center") Detalle
+            th(style="text-align:center") Precio
+        tbody
+          each LD,i in LDiag
+            tr(class='text-align:center;')
+              td #{i+1}
+              td #{LD.descripcion}
+              td #{LD.precio} 
+script(type='text/javascript').
+  $('#TDDiag').DataTable({
+    "oLanguage": {
+      "sUrl": "javascripts/DataTable/Spanish.lang"
+    },
+    "dom":'rt<button>ip',
+    //- "ordering":false,
+    "pageLength":5
+  });

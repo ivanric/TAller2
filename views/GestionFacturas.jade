@@ -1,0 +1,67 @@
+.row
+  #add.col-md-12.col-xs-12
+    a#addUTalFact.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;', onclick='Facturas.adicionar()') Agregar Talonario Factura
+      &nbsp;
+      span.glyphicon.glyphicon-plus
+  .col-md-12.col-xs-12
+    .row
+      .col-md-12.col-xs-12 
+        .input-group
+          .input-group-addon
+            i.fa.fa-search(aria-hidden="true")
+          input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='fecha Emision')
+  .col-md-12.col-xs-12
+    table#table-usuarios.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+      thead
+        tr
+          th #
+          th NIT 
+          th Autorizacion
+          th fecha de Emision
+          th Num. Inicio
+          th Num. Fin
+          th(style="text-align:center") Estado
+      tbody
+        each LF,i in LFacturas
+          tr
+            td #{i+1}
+            td #{LF.nit}  
+            td #{LF.autorizacion}
+            td #{LF.fec}
+            td #{LF.num_ini}
+            td #{LF.num_fin}
+            if LF.estado==true
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LF.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-up
+            else
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LF.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-down
+script(type='text/javascript').
+  var f=$('#fechaN').val();
+  //- var date=formatDate(f);
+  //- $('.nuevaF').html(date)
+  //- console.log(f) 
+  function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+  }
+  
+  //- $(document).ready(function(){
+    $('#table-usuarios').DataTable({
+      "oLanguage": {
+        "sUrl": "javascripts/DataTable/Spanish.lang"
+      },
+      "dom":'rt<button>ip',
+      //- "ordering":false,
+      "pageLength":5
+    });
+  //- })

@@ -1,0 +1,3 @@
+https://github.com/brianc/node-postgres/issues/746
+https://github.com/nodejs/node/issues/7733
+http://stackoverflow.com/questions/10814481/how-to-debug-a-socket-hang-up-error-in-nodejs/11542134#11542134

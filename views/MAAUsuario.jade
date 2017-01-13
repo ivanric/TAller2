@@ -1,0 +1,106 @@
+form#FormAddUserAdm.form-horizontal(action='/Usuarios/adicionarUsuario',enctype='multipart/form-data',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #addUserAdm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Adicionar Usuario Administrartivo
+        .modal-body
+          .row
+            .col-md-12.col-xs-12
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='inputname') Cédula
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='',placeholder='cedula..', name='ci',maxlength='8',minlength='7',data-fv-stringlength-message='digitos mayor a 7 y menor a 8',data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='inputname') Nombre
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='ap') Ap Paterno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='am') Ap Materno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+              .form-group
+                label.col-lg-3.control-label(for='') G&eacute;nero
+                .col-lg-9
+                  label.radio-inline
+                    input#inlineRadio1(type='radio', name='genero', value='m', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    | Masculino
+                  &nbsp;
+                  label.radio-inline
+                    input#inlineRadio2(type='radio', name='genero', value='f', style='display: inline;',data-fv-notempty='true', data-fv-message='Ingrese género')
+                    |  Femenino
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='fecha') Fecha Nacimiento
+                    .col-sm-12
+                      input#fecha_nac.form-control.input-sm(type='date',min='1990-01-01',max='2013-12-31', placeholder='fecha nacimiento', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento')
+                      //- input#fecha.form-control.input-sm(data-masked-input='99/99/9999',type='text', placeholder='fecha', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento',maxlength='10',data-fv-stringlength-message='solo 10')
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='direccion') Direccion 
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='direccion..', name='direccion', maxlength='20', data-fv-stringlength-message='direccion largar')          
+                      input#adm(type='hidden', name='tipo', value='a', style='display: inline;')       
+              .form-group
+                label.col-sm-12(for='telefono') Telefono
+                .col-sm-12
+                  input.form-control.input-sm(type='text', id='',maxlength='8',minlength='6',data-fv-stringlength-message='verifique el tamaño de digitos', placeholder='telefono', name='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+              .form-group
+                label.col-md-12(for='correo')
+                  | Correo Electronico
+                .col-md-12(id='')
+                  input.form-control.input-sm(type='email', id='', placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+              .form-group
+                label.col-md-12(for='foto')
+                  | fotografia
+                .col-md-12(id='')
+                  input.form-control.input-sm(type='file', id='', placeholder='fotografia', name='foto', data-fv-file="true",data-fv-file-extension="jpeg,png,gif,jpg",data-fv-file-type="image/jpeg,image/png,image/gif,image/jpg", data-fv-file-message='Error al subir imagen')      
+              .form-group
+                label.col-md-12(for='descripcion')
+                  | Observaciones
+                .col-md-12(for='descripcion')
+                  textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+                  //- textarea.form-control(type='text',name='descripcion',data-fv-notempty='true',data-fv-message='ingrese alguna descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  //- $('#fecha_nac').datepicker();
+  $("#pers").on('click',function(){
+    //- console.log(this.value);
+      //- $.ajax({
+      //-   url:'/Usuarios/MandarPersonal',
+      //-   type:'post',
+      //-   success:function(res){
+      //-     $('.JPersonal').html(res);
+      //-     $("#op").show(1000)
+      //-   },
+      //-   error:function(error){
+      //-     console.log("erro no se recibio");
+      //-   }
+      //- 
+      //- })
+      //- $("#op").show(1000)
+      //- $('#AgregarPersonal').modal('show')
+  })
+  $('#adm').click(function(){
+    
+      //- alert('jej')
+      //- $("#op").hide(500)
+      //- $("#AgregarPersonal").remove();
+      //- $('#btn-User').removeClass("disabled")
+      //- $('#btn-User').removeAttr("disabled")
+  })

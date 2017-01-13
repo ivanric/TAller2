@@ -1,0 +1,137 @@
+form#FATF.form-horizontal(action='/Consultas/adicionarFactura',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MATF.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Agregar Factura
+        .modal-body
+          .row
+            each LCPT ,i in ListaConsPrecio
+              .col-md-12
+                .form-group
+                  label.col-sm-12(for='telefono') Nombre
+                  .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+                .form-group
+                  label.col-sm-12(for='telefono') Apellidos
+                  .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='apellidos', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+                .form-group
+                  label.col-sm-12(for='CI') NIT/Cedula
+                  .col-sm-12
+                      input.form-control.input-sm(type='text', id='',placeholder='NIT/Cedula..', name='nit',maxlength='12',minlength='7',data-fv-stringlength-message='digitos entre 7 y 12',data-fv-notempty='true', data-fv-message='Ingrese Nit o Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                //- .form-group
+                //-   label.col-sm-12(for='fecha') Fecha
+                //-   .col-sm-12       
+                //-     input#fecha_fact.form-control.input-sm(type='date', placeholder='fecha de Factura', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha')
+                //-     input#fecha_ocul.form-control.input-sm(type='hidden', placeholder='fecha de Factura', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha')
+                .row
+                  .col-xs-6.col-md-6
+                    .form-group
+                      label.col-sm-12(for='fecha') Fecha
+                      .col-sm-12       
+                        input#fecha_fact.form-control.input-sm(type='date', placeholder='fecha de Factura', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha')
+                        input#fecha_ocul.form-control.input-sm(type='hidden', placeholder='fecha de Factura', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha')
+                  .col-xs-6.col-md-6
+                    .form-group                    
+                      label.col-xs-12(for='peso') Precio Servicio
+                      .col-xs-12
+                        input.form-control.input-sm(type='number', id='p_serv',placeholder='servicio..',name='servicio', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{p_serv}",disabled='disabled')
+                .row
+                  .col-xs-6.col-md-6
+                    .form-group
+                      label.col-xs-12(for='consulta') Precio Consulta
+                      .col-xs-12
+                        input.form-control.input-sm(type='number', id='p_cons',placeholder='consulta..',name='cosulta', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{LCPT.p_cons}",disabled='disabled')
+                        input(id="m_codcons",type="hidden",name='codcons', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{LCPT.codcons}")  
+                  .col-xs-6.col-md-6
+                    .form-group                    
+                      label.col-xs-12(for='peso') Precio Diagnostico
+                      .col-xs-12
+                        input.form-control.input-sm(type='text', id='p_diag',placeholder='precio diagnostico..', name='diag', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{p_diag}",disabled='disabled')   
+                        //- input.form-control.input-sm(type='hidden', id='',placeholder='precio diagnostico..', name='diag', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{LCPT.p_diag}")   
+                .row
+                  .col-xs-6.col-md-6
+                    .form-group
+                      label.col-xs-12(for='consulta') Total
+                      .col-xs-12
+                        input.form-control.input-sm(type='number', id='total',placeholder='total..', name='total', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{Total}",disabled='disabled')
+                        //- input.form-control.input-sm(type='hidden', id='',placeholder='total..', name='total', data-fv-integer='true', data-fv-integer-message='solo numero',value="#{Total}")
+                  .col-xs-6.col-md-6
+                    .form-group                    
+                      label.col-xs-12(for='peso') Importe
+                      .col-xs-12
+                        input.form-control.input-sm(type='number', id='',placeholder='importe a pagar..', name='importe', data-fv-integer='true', data-fv-integer-message='solo numero',data-fv-notempty='true', data-fv-message='Ingrese importe a pagar')
+                .row
+                  .col-xs-6.col-md-6
+                    .form-group
+                      label.col-sm-12(for='fecha') Saldo
+                      .col-sm-12
+                        input.form-control.input-sm(type='number', id='',placeholder='Saldo..', name='saldo',maxlength='3',minlength='1',data-fv-stringlength-message='digitos entre 1 y 3',data-fv-notempty='true', data-fv-message='Ingrese saldo', data-fv-integer='true', data-fv-integer-message='solo numero')
+                  .col-xs-6.col-md-6
+                    .form-group                    
+                      label.col-xs-12(for='inputname') estado
+                      .col-xs-12
+                        select.emply.form-control(name='estado',data-fv-notempty='true',data-fv-message='Seleccione grupo sanguineo',maxlength="10",data-fv-stringlength-message="sobrepaso los 10 caracteres")
+                          option(value="") seleccione estado
+                          option(value="a cuenta") A cuenta
+                          option(value="cancelado") Cancelado            
+                .row
+                  .col-md-12
+                    button#btn-User.btn.btn-success.btn-xs(type='submit') agregar
+                .row#ListaTFact
+                  .col-md-12 
+                    table#table-CFacturas.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%',style="margin-left: 0px;border-radius: 0px;font-size: 10px;")
+                      thead
+                        tr
+                          //- th #
+                          th NIT/CI 
+                          th Nombre
+                          th Importe
+                          th Saldo
+                          th(style="text-align:center") estado
+                      tbody
+                        each LFactC,i in LFactConsultas
+                          tr(style="font-size: 11px;")
+                            //- td #{i+1}
+                            td #{LFactC.nit}  
+                            td #{LFactC.nombre}
+                            td #{LFactC.importe} 
+                            td #{LFactC.saldo} 
+                            td  #{LFactC.estado} 
+                .modal-footer.text-center
+                  button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  var date=new Date();
+  var ndate=formatDate(date);
+  $('#fecha_fact').val(ndate);
+  $('#fecha_ocul').val(ndate);
+  $('#fecha_fact').attr({
+    'disabled':'disabled'
+    //'min':ndate,
+    //'max':ndate
+  })
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+  $('#table-CFacturas').DataTable({
+    "oLanguage": {
+      "sUrl": "javascripts/DataTable/Spanish.lang"
+    },
+    "dom":'rt<button>ip',
+    //- "ordering":false,
+    "pageLength":2,
+    'scrollY':"20",
+    "scrollCollapse": true,
+    "paging":         false
+  });

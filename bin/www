@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 
+var http = require('http');
 var app = require('../app');
 var debug = require('debug')('Taller2:server');
-var http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -88,4 +88,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-console.log('se inicio el servidor en el puerto 3000');
+console.log('se inicio el servidor en el puerto ',port);

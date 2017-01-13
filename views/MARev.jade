@@ -1,0 +1,45 @@
+form#FARev.form-horizontal(action='/Tratamientos/adicionarRevision',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MARev.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #addDiag.modal-dialog.modal-md.modal-md(style='width:18%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Nueva Revision
+        .modal-body
+          .row
+            .col-md-12 
+             .form-group
+                label.col-sm-12(for='telefono') Fecha Revision
+                .col-sm-12       
+                  input#fecha_rev.form-control.input-sm(type='date', placeholder='fecha revision', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de revision')
+                  input#fecha_ocul.form-control.input-sm(type='hidden', placeholder='fecha revision', name='fecha',data-fv-notempty='true', data-fv-message='Ingrese fecha de revision')
+              .form-group
+                label.col-md-12(for='descripcion')
+                  | Descripcion
+                .col-md-12(for='descripcion')
+                  textarea.form-control(type='text',name='descripcion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  var date=new Date();
+  var ndate=formatDate(date);
+  $('#fecha_rev').val(ndate);
+  $('#fecha_ocul').val(ndate);
+  $('#fecha_rev').attr({
+    'disabled':'disabled'
+    //'min':ndate,
+    //'max':ndate
+  })
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }

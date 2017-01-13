@@ -1,0 +1,31 @@
+.col-md-12 
+  table#table-CFacturas.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%',style="margin-left: 0px;border-radius: 0px;font-size: 10px;")
+    thead
+      tr
+        //- th #
+        th NIT/CI 
+        th Nombre
+        th Importe
+        th Saldo
+        th(style="text-align:center") estado
+    tbody
+      each LFactC,i in LFactConsultas
+        tr(style="font-size: 11px;")
+          //- td #{i+1}
+          td #{LFactC.nit}  
+          td #{LFactC.nombre}
+          td #{LFactC.importe} 
+          td #{LFactC.saldo} 
+          td  #{LFactC.estado} 
+script(type="text/javascript").
+  $('#table-CFacturas').DataTable({
+    "oLanguage": {
+      "sUrl": "javascripts/DataTable/Spanish.lang"
+    },
+    "dom":'rt<button>ip',
+    //- "ordering":false,
+    "pageLength":2,
+    'scrollY':"20",
+    "scrollCollapse": true,
+    "paging":         false
+  });

@@ -1,0 +1,112 @@
+.row
+  #add.col-md-12.col-xs-12
+    a#addUsuario.navbar-right.btn.btn-neon.btn-neon-blue.btn-same-width.btn-white-text(style='margin:1em;', onclick='Pacientes.adicionar()') Adicionar Paciente
+      &nbsp;
+      span.glyphicon.glyphicon-plus
+  .col-md-12.col-xs-12
+    .row
+      .col-md-3.col-xs-3 
+        .input-group
+          .input-group-addon
+            i.fa.fa-search(aria-hidden="true")
+          input#FiltroBuscar.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='nombre o apellido')
+      .col-md-2.col-xs-2
+        select#select-tipousu.form-control.input-xs(style='width: 12em;')
+          option(value='-1', selected='selected') Grupo 
+          option(value='A') Administrativo
+          option(value='P') Personal
+      .col-md-3.col-xs-3
+        .input-group
+          .input-group-addon  
+            i.fa.fa-search(aria-hidden="true")
+          input#FN.input-sm.form-control(type='search', style='width: 13em;display: inline;',placeholder='fecha nacimiento')
+      .col-md-4.col-xs-4(style='text-align: right;')
+        label.radio-inline
+          input#activos(type='radio', name='iestado', value='1') 
+          label(for='activos')
+            span
+          |  Activos
+        label.radio-inline
+          input#bajas(type='radio', name='iestado', value='0')  
+          label(for='bajas')
+            span
+          | Bajas
+        label.radio-inline
+          input#todos(type='radio', name='iestado', value='-1', checked='checked')
+          label(for='todos')
+            span
+          | Todos
+  .col-md-12.col-xs-12
+    table#table-usuarios.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
+      thead
+        tr
+          th #
+          th Nombres y Apellidos 
+          th Gr. Sang
+          th Fecha Nacimiento
+          th(style="text-align:center") Estado
+          th(style="text-align:center") Opciones
+      tbody
+        each LP,i in LPacientes
+          tr
+            td #{i+1}
+            td #{LP.nombre} #{LP.ap} #{LP.am} 
+            td #{LP.grpsan}
+            td #{LP.fecha_nacimiento}
+            if LP.estado=='1'
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LP.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-up
+            else
+              td(style="text-align:center")
+                a.neon-circle.neon-circle-green(href='#', accesskey='#{LP.estado}',style="text-align:center")
+                  i.fa.fa-thumbs-o-down
+            td(style="text-align:center")
+              if LP.estado===1
+                a.btn-xs.btn.btn-neon.btn-neon-brown(href='#',data-id='#{LP.codpac}',onclick="Usuarios.modificar(this)")
+                  i.fa.fa-edit  Modificar
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              if LP.estado===1
+                a.btn-xs.btn.btn-neon.btn-neon-danger(href='#',data-id='#{LP.codpac}',onclick='Pacientes.eliminar(this)')
+                  i.fa.fa-trash-o  Eliminar
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              if LP.estado===0
+                a.btn-xs.btn.btn-neon.btn-neon-green(href='#',data-id='#{LP.codpac}',onclick='Pacientes.habilitar(this)')
+                  i.fa.fa-undo  Habilitar
+                &nbsp;
+              else
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a.btn-xs.btn.btn-neon.btn-neon-yellow.btn-white-text(href='#', accesskey='#{LP.codpac}',data-id='#{LP.codpac}',onclick="Pacientes.Ver(this)")
+                  i.fa.fa-eye  Ver
+            
+script(type='text/javascript').
+  var f=$('#fechaN').val();
+  //- var date=formatDate(f);
+  //- $('.nuevaF').html(date)
+  //- console.log(f) 
+  function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+  }
+  
+  //- $(document).ready(function(){
+    $('#table-usuarios').DataTable({
+      "oLanguage": {
+        "sUrl": "javascripts/DataTable/Spanish.lang"
+      },
+      "dom":'rt<button>ip',
+      //- "ordering":false,
+      "pageLength":5
+    });
+  //- })

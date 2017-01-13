@@ -1,0 +1,114 @@
+form#FAPac.form-horizontal(action='/Pacientes/adicionarPaciente',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MAPac.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:40%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Adicionar Paciente
+        .modal-body
+          .row
+            .col-md-12
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='inputname') Cédula/N.I.F
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='',placeholder='cedula..', name='ci',maxlength='8',minlength='7',data-fv-stringlength-message='digitos mayor a 7 y menor a 8',data-fv-notempty='true', data-fv-message='Ingrese Cedula', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='inputname') Nombre
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='', placeholder='Nombre..', name='nombre', data-fv-notempty='true', data-fv-message='Ingrese Nombre')  
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='ap') Ap Paterno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Paterno..', name='ap', data-fv-notempty='true', data-fv-message='Ingrese apellido paterno')                                  
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='am') Ap Materno
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='ap Materno..', name='am', maxlength='10', data-fv-stringlength-message='Ingrese apellido materno')
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='ap') Genero
+                    .col-sm-12
+                      select.emply.form-control(name='genero',data-fv-notempty='true',data-fv-message='Seleccione alguna categoria',maxlength="50",data-fv-stringlength-message="sobrepaso los 50 caracteres")
+                        option(value="") seleccione Genero
+                        option(value="m") masculino
+                        option(value="f") femenino
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='am') Fecha de Nacimiento
+                    .col-sm-12
+                      input#fecha_nac.form-control.input-sm(type='date',min='1990-01-01',max='2013-12-31', placeholder='fecha nacimiento', name='fechnac',data-fv-notempty='true', data-fv-message='Ingrese fecha de Naciemiento')    
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='edad') edad
+                    .col-sm-12
+                      input.form-control.input-sm(type='number',min='1',max='150',id='',placeholder='edad.', name='edad',maxlength='3',minlength='1',data-fv-stringlength-message='digitos mayor 1 a 3 digitos',data-fv-notempty='true', data-fv-message='ingrese edad', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='direccion') Numero de Poliza 
+                    .col-sm-12
+                      input.form-control.input-sm(type='number',min='1',id='',placeholder='num. de poliza.', name='numpol',maxlength='5',minlength='1',data-fv-stringlength-message='digitos mayor 1 a 5 digitos', data-fv-integer='true', data-fv-integer-message='solo numero')    
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='inputname') Numero de Seguro Social
+                    .col-xs-12
+                      input.form-control.input-sm(type='text', id='',placeholder='numero de Seguro Social..', name='numseg',maxlength='7',minlength='1',data-fv-stringlength-message='digitos mayor a 1 y 7', data-fv-integer='true', data-fv-integer-message='solo numero')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='inputname') Grupo sanguineo
+                    .col-xs-12
+                      select.emply.form-control(name='grpsan',data-fv-notempty='true',data-fv-message='Seleccione grupo sanguineo',maxlength="4",data-fv-stringlength-message="sobrepaso los 4 caracteres")
+                        option(value="") seleccione Grupo sanguineo
+                        option(value="o+") O+
+                        option(value="a") A    
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='direccion') Direccion
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='direccion..', name='direccion',maxlength='15',minlength='1',data-fv-stringlength-message='digitos entre 1 a 15 porfavor')                                  
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='localidad') Localidad
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='localidad..', name='localidad',maxlength='15',minlength='1',data-fv-stringlength-message='digitos entre 1 a 15 porfavor')      
+              .row
+                .col-md-6  
+                  .form-group
+                    label.col-sm-12(for='provincia') Provincia
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='', placeholder='provincia..', name='provincia',maxlength='15',minlength='1',data-fv-stringlength-message='digitos entre 1 a 15 porfavor')                                  
+                .col-md-6
+                  .form-group  
+                    label.col-sm-12(for='localidad') Codigo Postal
+                    .col-sm-12
+                      input.form-control.input-sm(type='text', id='',placeholder='Codigo Postal..', name='codpost',maxlength='7',minlength='1',data-fv-stringlength-message='digitos mayor a 1 y 7', data-fv-integer='true', data-fv-integer-message='solo numero')
+
+              .form-group
+                label.col-sm-12(for='telefono') Telefono
+                .col-sm-12
+                  input.form-control.input-sm(type='text', name='telefono',id='',maxlength='8',minlength='6',data-fv-stringlength-message='verifique el tamaño de digitos', placeholder='telefono',data-fv-integer='true',data-fv-integer-message='Solo numero')
+              .form-group
+                label.col-md-12(for='correo')
+                  | Correo Electronico
+                .col-md-12(id='')
+                  input.form-control.input-sm(type='email', id='', placeholder='correo', name='correo', data-fv-emailaddress='true', data-fv-emailaddress-message='Ingrese correo correctamente')
+              .form-group
+                label.col-md-12(for='descripcion')
+                  | Observaciones
+                .col-md-12(for='descripcion')
+                  textarea.form-control(type='text',name='observacion',maxlength="30",data-fv-stringlength-message="LA edicion deve ser 100 characters" )
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").
+  //- $('#fecha_nac').datepicker();

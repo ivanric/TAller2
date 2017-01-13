@@ -1,0 +1,65 @@
+#verUsuario.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog.modal-md(style='width: 22em;')
+    #DatosPersonales.modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        |         
+        h4.modal-title Datos del Usuario
+      |       
+      .modal-body
+        .row
+          .col-md-12
+            each LD,i in LDATOSUSER
+              .row
+                .col-md-12
+                  div(style='text-align: center;')
+                    img(src='images/#{LD.foto}', width='200px', style='box-shadow: 0px 1px 15px rgba(89, 192, 17, 0.5) ! important;')
+                  |                 
+                  p
+                    .row
+                      .col-md-6 Nombres:  
+                      .col-md-6 #{LD.nombre}
+                    .row                     
+                      .col-md-6 Apellidos:  
+                      .col-md-6 #{LD.ap} #{LD.am}
+                    .row                     
+                      .col-md-6 Direccion:     
+                      .col-md-6 #{LD.direccion}
+                    .row                    
+                      .col-md-6 Correo:                    
+                      .col-md-6 #{LD.correo}
+                    .row                    
+                      .col-md-6 Tipo:
+                      if LD.tipo=='a'
+                        .col-md-6 Administrativo
+                      else
+                        .col-md-6 Personal
+                    .row                    
+                      .col-md-6 Telefono:                     
+                      .col-md-6 #{LD.telefono}
+                    .row
+                      each LP,i in LDATOSPER
+                        .col-md-6 Categoria
+                        if LD.codusu==LP.codusu
+                          if LP.categoria=='m'
+                            .col-md-6 Medico    
+                          else
+                            if LP.categoria=='r'
+                              .col-md-6 Recepcionista
+                            else
+                              .col-md-6 Auxiliar
+                        else
+                              //-  code
+                        //- if LD.codusu==LDATOSPER.codusu
+                        //-   if LDATOSPER.categoria=='m'
+                        //-     .col-md-6 Medico    
+                        //-   else
+                        //-     if LDATOSPER.categoria=='r'
+                        //-       .col-md-6 Recepcionista
+                        //-     else
+                        //-       .col-md-6 Auxiliar
+              .modal-footer.text-center
+                button.acceptVUser.btn.btn-success(type='button') Aceptar
+                |               
+                button#cancelar.btn.btn-danger(type='button', data-dismiss='modal') Cancelar

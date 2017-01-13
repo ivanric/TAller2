@@ -1,0 +1,46 @@
+form#FAFact.form-horizontal(action='/Facturas/adicionarFactura',method='post', data-fv-framework='bootstrap', data-fv-excluded='disabled', data-fv-icon-valid='glyphicon glyphicon-ok', data-fv-icon-invalid='glyphicon glyphicon-remove', data-fv-icon-validating='glyphicon glyphicon-refresh')
+  #MAFact.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #TExtoModa.modal-dialog.modal-md.modal-md(style='width:25%')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#myModalLabel.modal-title Nuevo Talonario de Factura
+        .modal-body
+          .row
+            .col-md-12
+              .form-group
+                label.col-sm-12(for='telefono') NIT
+                .col-sm-12
+                    input.form-control.input-sm(type='text', id='', placeholder='nit..', name='nit', data-fv-notempty='true', data-fv-message='Ingrese Nombre',maxlength='5',minlength='2',data-fv-stringlength-message='digitos entre 2 y 5')  
+              .form-group
+                label.col-sm-12(for='telefono') Codigo Control
+                .col-sm-12
+                    input.form-control.input-sm(type='number', id='',placeholder='codigo control..', name='codcont',maxlength='5',minlength='2',data-fv-stringlength-message='digitos entre 2 y 5',data-fv-notempty='true', data-fv-message='Ingrese codigo de control', data-fv-integer='true', data-fv-integer-message='solo numero')
+              .form-group
+                label.col-sm-12(for='telefono') Llave de Dosificasion
+                .col-sm-12
+                    input.form-control.input-sm(type='number', id='',placeholder='llave dosificasion..', name='llave',maxlength='5',minlength='2',data-fv-stringlength-message='digitos entre 2 y 5',data-fv-notempty='true', data-fv-message='Ingrese llave de dosificasion', data-fv-integer='true', data-fv-integer-message='solo numero')
+              .form-group
+                label.col-sm-12(for='telefono') Numero Autorizacion
+                .col-sm-12
+                    input.form-control.input-sm(type='number', id='',placeholder='numero autorizacion..', name='autorizacion',maxlength='5',minlength='2',data-fv-stringlength-message='digitos entre 2 y 5',data-fv-notempty='true', data-fv-message='Ingrese numero autorizacion', data-fv-integer='true', data-fv-integer-message='solo numero')
+              .form-group
+                label.col-sm-12(for='telefono') Fecha de emision
+                .col-sm-12       
+                  input#fecha_emis.form-control.input-sm(type='date', placeholder='fecha de emision', name='fch_emision',data-fv-notempty='true', data-fv-message='Ingrese fecha de Emision')
+              .row
+                .col-xs-6.col-md-6
+                  .form-group
+                    label.col-xs-12(for='numini') Núḿero Inicial
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='numero inicial..', name='num_ini',maxlength='5',minlength='1',data-fv-stringlength-message='digitos mayor a 1 y menor a 5', data-fv-integer='true', data-fv-integer-message='solo numero',data-fv-notempty='true', data-fv-message='Ingrese numero de inicial de factura')
+                .col-xs-6.col-md-6
+                  .form-group                    
+                    label.col-xs-12(for='peso') Núḿero Fin
+                    .col-xs-12
+                      input.form-control.input-sm(type='number', id='',placeholder='numero final..', name='num_fin',maxlength='5',minlength='1',data-fv-stringlength-message='digitos mayor a 1 y menor a 5', data-fv-integer='true', data-fv-integer-message='solo numero',data-fv-notempty='true', data-fv-message='Ingrese numero final de factura')
+              .modal-footer.text-center
+                button#btn-User.btn.btn-success(type='submit') Aceptar
+                button.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+script(type="text/javascript").

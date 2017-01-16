@@ -32,6 +32,7 @@ var HistorialesModelos=require('../models/historiales_models.js')
 router.all('/Gestion', function(req, res, next) {//aui se le asigna las rutas
   res.render('GestionHistoriales')
 });
+//esto es cuando se utiliza el ajax de la dataTable
 router.post('/lista', function(req, res, next) {//aui se le asigna las rutas
   // console.log(req);
   console.log(req.body);

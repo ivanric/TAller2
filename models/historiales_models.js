@@ -49,13 +49,24 @@ exports.GestionHistoriales=function(req,callback){
 
 			// console.log('total historiales1 ',tot);
 			// client.query("select num,to_char(fecha,'dd/mm/yy') as fecha,antper,consentimiento,login,codpac,estado,2 as Tot from historial ORDER BY num LIMIT $1 OFFSET $2",[req.body.length,req.body.start],function(err, result){
-			client.query("select num,to_char(fecha,'dd/mm/yy') as fecha,antper,consentimiento,login,codpac,estado from historial ORDER BY num",function(err, result){
-				if(err) {
-					return console.error('Error de ejecución de consulta Gestion historiales', err);
-				}
-				done();
-				callback(result.rows);
-			});
+			if (req.body.opcion==-1) {
+				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 ORDER BY h.num",["%"+req.body.filtro+"%"],function(err, result){
+					if(err) {
+						return console.error('Error de ejecución de consulta Gestion historiales2', err);
+					}
+					done();
+					callback(result.rows);
+				});
+			}else{
+				// client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE '"+"%"+req.body.filtro+"%"+"' ORDER BY h.num",function(err, result){
+				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 and h.estado=$2 ORDER BY h.num",["%"+req.body.filtro+"%",req.body.opcion],function(err, result){
+					if(err) {
+						return console.error('Error de ejecución de consulta Gestion historiales2', err);
+					}
+					done();
+					callback(result.rows);
+				});
+			}
 		});
 		pool.on('error', function (err, client) {
 			console.error('idle client error', err.message, err.stack)

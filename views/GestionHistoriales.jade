@@ -33,6 +33,7 @@
         tr
           th #
           th Nombre 
+          th fecha 
           th Ant. Personales
           th(style="text-align:center") Consentimiento
           th(style="text-align:center") Estado
@@ -120,6 +121,7 @@ script(type='text/javascript').
       opcion=$(this).val();
       correr();
     })
+    var tablitaHist='';
     function correr(){
       console.log('oo',filtro,' ',opcion);
       $.ajax({
@@ -133,45 +135,60 @@ script(type='text/javascript').
         success:function(resp){
           //- var data=resp
           console.log('siiiiiiiii ',resp);
-          $('#table-historiales').DataTable({
-          "oLanguage":{
-               "sUrl":"javascripts/DataTable/Spanish.lang"
-          },
-            'dom':'rt<button>ip',
-            //- 'serverSide':true,  
-            //- 'processing': true,
-            data:resp,
-            columns:[
-              {data:'num'},
-              {data:'num'},
-              {data:'num'},
-              {data:'num'},
-              {data:'estado'},
-              {data:'num'}
-            ]            
-            ,// "createdRow">>dibujando de acuerdo a las columnas en este caso de 0 a 5 (arriba)
-            "createdRow":function(row,data,index){
-              //- console.log('index')
-              $('td',row).eq(0).html(data.num);
-              $('td',row).eq(1).html(data.fecha);
-              $('td',row).eq(2).html(data.antper);
-              if(data.consentimiento=='t'){
-                $('td',row).eq(3).html('confirmado');
-              }else{
-                $('td',row).eq(3).html('sin confirmacion');
-              }
-              if(data.estado){
-                $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-up"></i></a>');
-              }else{
-                $('td',row).eq(4).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-down"></i></a>');
-              }
-              $('td',row).eq(5).html('<a type="button" data-toggle="tooltip" data-placement="top" title="Modificar" class="btn-xs btn btn-neon btn-neon-brown" href="#" style="text-align:center"><i class="fa fa-edit"></i> Modificar</a>');
-            }
-          })
+          if ($.fn.dataTable.isDataTable('#table-historiales')) {
+            tablitaHist.destroy();
+            //- tablitaHist.clear();
+            //- tablitaHist.draw();
+            //- $('#table-historiales').DataTable();
+            //- iniciarDatable(tablitaHist,resp); //no es posible enviar tablitaHist xq se destruist la dataTable con la funcion destroy()
+            iniciarDatable(resp);
+            
+          } else {
+            iniciarDatable(resp);
+          }
         },
         error:function(err){
           alert('sin respuesta del servidor')
         }  
+      })
+    }
+    function iniciarDatable(resp){
+      tablitaHist=$('#table-historiales').DataTable({
+        "oLanguage":{
+             "sUrl":"javascripts/DataTable/Spanish.lang"
+        },
+        'dom':'rt<button>ip',
+        //- 'serverSide':true,  
+        //- 'processing': true,
+        data:resp,
+        columns:[
+          {data:'num'},
+          {data:'num'},
+          {data:'num'},
+          {data:'num'},
+          {data:'num'},
+          {data:'estado'},
+          {data:'num'}
+        ]            
+        ,// "createdRow">>dibujando de acuerdo a las columnas en este caso de 0 a 5 (arriba)
+        "createdRow":function(row,data,index){
+          //- console.log('index')
+          $('td',row).eq(0).html(data.num);
+          $('td',row).eq(1).html(data.nombre+' '+data.ap);
+          $('td',row).eq(2).html(data.fecha);
+          $('td',row).eq(3).html(data.antper);
+          if(data.consentimiento=='t'){
+            $('td',row).eq(4).html('confirmado').addClass('text-center');
+          }else{
+            $('td',row).eq(4).html('sin confirmacion').addClass('text-center');
+          }
+          if(data.estado){
+            $('td',row).eq(5).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-up"></i></a>').addClass('text-center');;
+          }else{
+            $('td',row).eq(5).html('<a type="button" class="neon-circle neon-circle-green" href="#" style="text-align:center"><i class="fa fa-thumbs-o-down"></i></a>').addClass('text-center');;
+          }
+          $('td',row).eq(6).html('<a type="button" data-toggle="tooltip" data-placement="top" title="Modificar" class="btn-xs btn btn-neon btn-neon-brown" href="#" style="text-align:center"><i class="fa fa-edit"></i> Modificar</a>').addClass('text-center');;
+        }
       })
     }
     //- alert('oo',filtro,' ',opcion)

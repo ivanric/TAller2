@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style>
+    table{
+      /*background:blue;*/
+      color:green;
+      font-size: 12px;
+      font-style: italic;
+      /*border-radius: 20px;*/
+    }
+  </style>
+  <body>
+    <div class="">
+      <p style="color:red;text-align:center;width:100%;background:blue;">
+        hola familia
+      </p>
+      <p style="text-align:center;">
+        <table width="100%;" border="2px;">
+          <tr>
+            <th>
+              NIT
+            </th>
+            <th>
+              AUTORIZACION
+            </th>
+          </tr>
+          {{#each respuesta}}
+            <tr>
+              <td>
+                {{nit}}
+              </td>
+              <td>
+                {{autorizacion}}
+              </td>
+            </tr>
+          {{/each}}
+        </table>
+
+      </p>
+    </div>
+  </body>
+</html>

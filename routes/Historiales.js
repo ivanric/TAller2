@@ -67,6 +67,7 @@ router.post('/lista', function(req, res, next) {//aui se le asigna las rutas
 });
 router.post('/listaHistoriales',function(req,res,next){
   console.log(req.body);
+  // console.log(req.body.numero_h=='');
   HistorialesModelos.GestionHistoriales(req,function(resp){
     res.json(resp)
   })

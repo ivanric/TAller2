@@ -42,6 +42,7 @@ exports.GestionHistoriales=function(req,callback){
 	// TotHist(function(tot){
 		// var tot=parseInt(tot,10);
 		// console.log('total historiales ',tot);
+
 		pool.connect(function(err, client, done) {
 			if(err) {// si existe un error
 				return console.error('ir a buscar error de cliente de la pool', err);
@@ -49,17 +50,31 @@ exports.GestionHistoriales=function(req,callback){
 
 			// console.log('total historiales1 ',tot);
 			// client.query("select num,to_char(fecha,'dd/mm/yy') as fecha,antper,consentimiento,login,codpac,estado,2 as Tot from historial ORDER BY num LIMIT $1 OFFSET $2",[req.body.length,req.body.start],function(err, result){
+			var numero=parseInt(req.body.numero_h,10);
+			console.log('numero: ',numero);
+			console.log('numero: ',isNaN(numero));
+			// console.log('numero2: ',numero=='NaN');
+			// console.log('numero3: ',numero=="NaN");
+			// console.log('numero4: ',numero==null);
+			var num_h=req.body.numero_h;
+			if (isNaN(numero)) {
+				console.log('entrooo');
+				num_h=-2;
+			}
+			if (req.body.numero_h=='') {
+				num_h=-1;
+			}
 			if (req.body.opcion==-1) {
-				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 ORDER BY h.num",["%"+req.body.filtro+"%"],function(err, result){
+				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 and (h.num=$2 or $3=-1) ORDER BY h.num",["%"+req.body.filtro+"%",num_h,num_h],function(err, result){
 					if(err) {
-						return console.error('Error de ejecución de consulta Gestion historiales2', err);
+						return console.error('Error de ejecución de consulta Gestion historiales2.1', err);
 					}
 					done();
 					callback(result.rows);
 				});
 			}else{
 				// client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE '"+"%"+req.body.filtro+"%"+"' ORDER BY h.num",function(err, result){
-				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 and h.estado=$2 ORDER BY h.num",["%"+req.body.filtro+"%",req.body.opcion],function(err, result){
+				client.query("select h.num,p.nombre,p.ap,to_char(h.fecha,'dd/mm/yy') as fecha,h.antper,h.consentimiento,d.login,h.codpac,h.estado from historial h,paciente p,datos d where h.codpac=p.codpac and d.login=h.login and concat(p.nombre,p.ap) LIKE $1 and (h.num=$2 or $3=-1) and h.estado=$4 ORDER BY h.num",["%"+req.body.filtro+"%",num_h,num_h,req.body.opcion],function(err, result){
 					if(err) {
 						return console.error('Error de ejecución de consulta Gestion historiales2', err);
 					}

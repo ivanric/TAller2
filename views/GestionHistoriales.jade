@@ -5,13 +5,19 @@
       span.glyphicon.glyphicon-plus
   .col-md-12.col-xs-12
     .row
-      .col-md-6.col-xs-6 
+      .col-md-4.col-xs-6 
         .input-group
           .input-group-addon
             i.fa.fa-search(aria-hidden="true")
           input#busqueda.input-sm.form-control(type='search',style='width: 13em;display: inline;',placeholder='nombre de servicio')
           input#busq(type='hidden',name='busq')
-      .col-md-6.col-xs-6(style='text-align: right;')
+      .col-md-4.col-xs-6 
+        .input-group
+          .input-group-addon
+            i.fa.fa-search(aria-hidden="true")
+          input#numhist.input-sm.form-control(name='numhist',value='',type='number',style='width: 13em;display: inline;',placeholder='# de historia')
+          //- input#numhist(type='hidden',name='numhist')      
+      .col-md-4.col-xs-6(style='text-align: right;')
         label.radio-inline
           input#activos(type='radio', name='iestado', value='1') 
           label(for='activos')
@@ -31,7 +37,7 @@
     table#table-historiales.table.texto.table-condenced.display.responsive.no-wrap(cellspacing='0', width='100%', style='border: 3px solid #1F2065;')
       thead
         tr
-          th #
+          th # Historia
           th Nombre 
           th fecha 
           th Ant. Personales
@@ -111,8 +117,13 @@ script(type='text/javascript').
   //- })
   //- $(document).ready(function(){
   var filtro=$('#busqueda').val();
+  var numero_h=$('#numhist').val();
   var opcion=$('input[name="iestado"]:checked').val();  
   correr();   
+    $('#numhist').on('keyup',function(){
+      numero_h=$(this).val();
+      correr();
+    })
     $('#busqueda').on('keyup',function(){
       filtro=$(this).val();
         correr();
@@ -130,7 +141,8 @@ script(type='text/javascript').
         dataType:'json',
         data:{
           filtro:filtro,
-          opcion:opcion
+          opcion:opcion,
+          numero_h:numero_h
         },
         success:function(resp){
           //- var data=resp

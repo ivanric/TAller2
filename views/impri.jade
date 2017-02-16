@@ -1,0 +1,36 @@
+doctype
+html(lang='en')
+  head
+    style(type="text/css").
+      div{
+        background:blue;
+        border-radius:2px;
+        padding:31px;
+      }
+      table{
+        width:100%;
+      }
+    meta(charset='utf-8')
+    title
+      | hello
+  body
+    p(style='text-align:center;') Hola imprimir
+    p #{data.valor}
+    div
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    span
+      | -----------------------------------------------------------------------------------------------------------------------------------
+    table(border='1px')  
+      thead
+        tr
+          th a
+          th b
+          th c
+          th d
+      tbody
+        //- each LF,i in data
+        //-   tr
+        //-     td #{LF.nit}  
+        //-     td hello  
+        //-     td hello  
+        //-     td hello  

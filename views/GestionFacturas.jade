@@ -21,6 +21,7 @@
           th Num. Inicio
           th Num. Fin
           th(style="text-align:center") Estado
+          th(style="text-align:center") imprimir-pru
       tbody
         each LF,i in LFacturas
           tr
@@ -38,7 +39,13 @@
               td(style="text-align:center")
                 a.neon-circle.neon-circle-green(href='#', accesskey='#{LF.estado}',style="text-align:center")
                   i.fa.fa-thumbs-o-down
+            td
+              //- a.btn.btn-primary.btn-fact(href="#",type="button") link        
+              a.btn.btn-primary.btn-fact(href="/Facturas/imprimir",type="button") link        
+      div#facturas
+      //- iframe#fact(name='factu')           
 script(type='text/javascript').
+  
   var f=$('#fechaN').val();
   //- var date=formatDate(f);
   //- $('.nuevaF').html(date)
@@ -64,4 +71,24 @@ script(type='text/javascript').
       //- "ordering":false,
       "pageLength":5
     });
+  //- })
+  //- $('.btn-fact').on('click',function(){
+  //-   alert('hello')
+  //-   var direccion='/Facturas/imprimir'
+  //-   $.ajax({
+  //-     url:direccion,
+  //-     //- type:'all',
+  //-     //- iframe:true,
+  //-     success:function(resp){
+  //-       $('.btn-fact').attr('target','factu')
+  //-       $('#fact').attr({
+  //-         'src':direccion,
+  //-         'target':'factu'
+  //-       })
+  //-     },
+  //-     error:function(err){
+  //-       console.log(err);
+  //-     }
+  //-   })    
+  //-     
   //- })
